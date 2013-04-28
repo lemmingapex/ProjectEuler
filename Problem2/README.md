@@ -54,7 +54,7 @@ b = 0
 
 x = 1
 
-n = _floor(F_to_i(4*10^6))_
+n = _F_to_i(3999999)/3_
 
 By using the above equations, a closed form can easily be written describing the sum of every third number, every even number, in the sequence up to n.
 
