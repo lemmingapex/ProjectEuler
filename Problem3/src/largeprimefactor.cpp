@@ -1,6 +1,6 @@
 // Scott Wiedemann
 // 05/13/2013
-// evenfib.cpp
+// largeprimefactor.cpp
 // Largest prime factor
 
 #include <stdio.h>
