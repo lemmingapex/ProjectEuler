@@ -1,4 +1,4 @@
-Largest palindrome product](http://projecteuler.net/problem=4)
+[Largest palindrome product](http://projecteuler.net/problem=4)
 ====================
 Scott Wiedemann
 
