@@ -64,8 +64,13 @@ public class SmallestMultiple {
 		return lcm;
 	}
 	
-
 	public static void main(String[] args) {
-		System.out.println(SmallestMultiple.getSmallestMultiple(20));
+		if (args.length != 1) {
+	        System.err.println("Incorrect number of arguments.");
+	        System.err.println("Usage: ./smallestmultiple.jar N");
+	        System.exit(1);
+		}
+        Integer N = Integer.parseInt(args[0]);
+		System.out.println(SmallestMultiple.getSmallestMultiple(N));
 	}
 }
