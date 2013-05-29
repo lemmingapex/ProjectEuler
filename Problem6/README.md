@@ -26,4 +26,4 @@ Thoughts
 
 Run-time
 --------
-O(N)
+O(1)
