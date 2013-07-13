@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project default="jar" name="Create Largest product in a series Runnable Jar">
+	<property name="target" value="./target/lps.jar"/>
+    <target name="jar">
+        <jar destfile="${target}" filesetmanifest="mergewithoutmain">
+            <manifest>
+                <attribute name="Main-Class" value="sw.projecteuler.lps.LPS"/>
+                <attribute name="Class-Path" value="."/>
+            </manifest>
+            <fileset dir="./bin"/>
+        </jar>
+		<chmod file="${target}" perm="755"/>
+    </target>
+    <target name="clean">
+        <delete dir="build"/>
+    </target>
+</project>
