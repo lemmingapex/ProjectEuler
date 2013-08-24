@@ -17,5 +17,7 @@ Run-time
 (N*N-L)*L*4
 
 Where:
+
 N is the size of the grid.  (20 in this case)
+
 L is the length of the product to be found. (4 in this case)
