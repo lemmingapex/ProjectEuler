@@ -6,7 +6,7 @@ Scott Wiedemann
 
 Run It
 ------
-ruby ./src/lpg.rb 4
+ruby ./src/lpg.rb [productLength]
 
 Thoughts
 --------
