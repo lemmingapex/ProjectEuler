@@ -4,8 +4,8 @@ import java.math.BigInteger;
 
 /**
  * 07/14/2013
- * SPT.java
- * Special Pythagorean triplet
+ * LatticePaths.java
+ * Lattice Paths
  * 
  * @author Scott Wiedemann
  * 
@@ -23,7 +23,7 @@ public class LatticePaths {
 	public static void main(String[] args) {
 		if (args.length != 1) {
 	        System.err.println("Incorrect number of arguments.");
-	        System.err.println("Usage: ./sumprimes.jar N");
+	        System.err.println("Usage: ./latticepaths.jar N");
 	        System.exit(1);
 		}
 		Long N = Long.parseLong(args[0]);
