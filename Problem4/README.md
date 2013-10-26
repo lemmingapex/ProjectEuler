@@ -24,4 +24,4 @@ The palindrome almost always appears in the top 5% of the search range.  The qui
 
 Run-time
 --------
-Worst case O(n^2) where n is the multiple range. 899, or 999-100 when l=3.  In practice, the program will run considerably faster.  Program can easily calculate product where l=7.
+Worst case O(n²) where n is the multiple range. 899, or 999-100 when l=3.  In practice, the program will run considerably faster.  Program can easily calculate product where l=7.

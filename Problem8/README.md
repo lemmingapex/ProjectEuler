@@ -16,4 +16,6 @@ Run It
 
 Run-time
 --------
-N*m, where N is the number of consecutive digits in the product and m is the length of the digit string.  N is 5 and m is 1000 in this case.
+O(N*m)
+
+Where N is the number of consecutive digits in the product and m is the length of the digit string.  N is 5 and m is 1000 in this case.

@@ -6,7 +6,7 @@ Scott Wiedemann
 
 Run It
 ------
-ruby ./src/ls.rb [numberOfDigits]
+./src/ls.rb [numberOfDigits]
 
 Thoughts
 --------
@@ -14,7 +14,7 @@ Use a big-int-like data structure.
 
 Run-time
 --------
-L
+O(L)
 
 Where
 

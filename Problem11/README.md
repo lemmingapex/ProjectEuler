@@ -14,7 +14,7 @@ Used a brute force search.
 
 Run-time
 --------
-(N*N-L)*L*4
+<notextile>O((N*N-L)*L*4)</notextile>
 
 Where:
 
