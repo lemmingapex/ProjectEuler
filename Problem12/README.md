@@ -19,6 +19,7 @@ Thoughts
 --------
 
 Each triangular number can be written as a simple arithmetic series: 
+
 ![triangular_number](lib/triangular_number.png)
 
 
