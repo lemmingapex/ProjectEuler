@@ -16,8 +16,8 @@ Run It
 
 Thoughts
 --------
-
+Look for a common character that has no prefix.  Remove this character from the keys and add it to the password.
 
 Run-time
 --------
-O(n*d)
+O(n*d) where n is the number of keys in the keylog and d is the mean number of digits in a key.
