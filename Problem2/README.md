@@ -6,7 +6,7 @@ Scott Wiedemann
 
 Compile It
 ----------
-cd ./src
+cd ./src  
 make
 
 
