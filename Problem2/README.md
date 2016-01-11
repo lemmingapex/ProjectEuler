@@ -22,7 +22,7 @@ Thoughts
 
 Notice that every third number in the Fibonacci sequence is even.
 
-The fibonacci number at index i can be found using the closed form:
+The fibonacci number at index n can be found using the closed form:
 
 ![closed form](lib/closed_form.png)
 
@@ -56,7 +56,7 @@ x = 1
 
 n = _F_to_i(3999999)/3_
 
-By using the above equations, a closed form can easily be written describing the sum of every third number, every even number, in the sequence up to n.
+By using the above equations, a closed form can easily be written describing the sum of every third number--every even number--in the sequence up to n.
 
 Run-time
 --------
