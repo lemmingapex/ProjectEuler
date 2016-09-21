@@ -13,7 +13,7 @@ Run It
 ------
 ./target/numberlettercounts.jar N
 
-N is 1000 in this case.
+N is 1000 in this case.  This program will count as high as 10e15.
 
 Thoughts
 --------
