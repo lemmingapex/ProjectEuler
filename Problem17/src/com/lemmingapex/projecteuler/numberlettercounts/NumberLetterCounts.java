@@ -29,22 +29,14 @@ public class NumberLetterCounts {
 		String nWrittenOut = "";
 		int i = 1;
 		// 0 to 9
-		while(i <= N && i < singleDigits.length) {
-			nWrittenOut = singleDigits[i];
-			i++;
+		if(N <= 9) {
+			nWrittenOut = singleDigits[N];
+		} else if(N <= 19) {
+			nWrittenOut = tenToNineteen[N - singleDigits.length];
+		} else {
+			nWrittenOut = tens[(int)(N/10) - 2] + " " + singleDigits[N%10];
 		}
 
-		// 10 to 19
-		while(i <= N && i <= singleDigits.length + tenToNineteen.length - 1) {
-			nWrittenOut = tenToNineteen[i - singleDigits.length];
-			i++;
-		}
-
-		// 20 to 99
-		while(i <= N && i < 100) {
-			nWrittenOut = tens[(int)(i/10) - 2] + " " + singleDigits[i%10];
-			i++;
-		}
 		return nWrittenOut.trim();
 	}
 
@@ -60,11 +52,7 @@ public class NumberLetterCounts {
 		if(N < 100) { // 1 to 99
 			nWrittenOut = convertOneToNinitynine(N);
 		} else { // 100 to 999
-			int i = 100;
-			while(i <= N && i < 1000) {
-				nWrittenOut = singleDigits[(int)(i/100)] + " " + places[(int)(i/1000)] + " " + and[(i%100 == 0) ? 0 : 1] + " " + ((i%100 == 0) ? "" : convertOneToNinitynine(i%100));
-				i++;
-			}
+			nWrittenOut = singleDigits[(int)(N/100)] + " " + places[(int)(N/1000)] + " " + and[(N%100 == 0) ? 0 : 1] + " " + ((N%100 == 0) ? "" : convertOneToNinitynine(N%100));
 		}
 		return nWrittenOut.trim();
 	}
