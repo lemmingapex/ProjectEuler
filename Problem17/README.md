@@ -18,3 +18,7 @@ N is 1000 in this case.  This program will count as high as 10e15.
 Thoughts
 --------
 Nothing fancy here.
+
+Run-time
+--------
+Unknown.
