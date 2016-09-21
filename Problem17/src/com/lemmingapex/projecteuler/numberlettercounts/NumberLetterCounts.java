@@ -74,7 +74,7 @@ public class NumberLetterCounts {
 			int jI = i;
 			while(j > 0) {
 				int j1000 = (int)Math.pow(1000, j);
-				prefix += convertOneToNineHundredAndNinitynine(jI/j1000) + " " + places[j] + " ";
+				prefix += (((jI/j1000)%1000 == 0) ? "" : convertOneToNineHundredAndNinitynine(jI/j1000)) + " " + places[j] + " ";
 				j--;
 				jI -= (jI/j1000)*j1000;
 			}
