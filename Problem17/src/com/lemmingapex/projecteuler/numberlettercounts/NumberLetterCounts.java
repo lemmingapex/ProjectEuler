@@ -74,7 +74,7 @@ public class NumberLetterCounts {
 			int jI = i;
 			while(j > 0) {
 				int j1000 = (int)Math.pow(1000, j);
-				prefix += (((jI/j1000)%1000 == 0) ? "" : convertOneToNineHundredAndNinitynine(jI/j1000)) + " " + places[j] + " ";
+				prefix += ((jI/j1000)%1000 == 0) ? "" : (convertOneToNineHundredAndNinitynine(jI/j1000) + " " + places[j] + " ");
 				j--;
 				jI -= (jI/j1000)*j1000;
 			}
@@ -88,8 +88,7 @@ public class NumberLetterCounts {
 	}
 
 	public int count(int N) {
-		int totalNumberOfLetters = countOneToAQuadrillion(N);
-		return totalNumberOfLetters;
+		return countOneToAQuadrillion(N);
 	}
 
 	public static void main(String[] args) {

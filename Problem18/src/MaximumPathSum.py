@@ -14,7 +14,6 @@ class MaximumPathSum:
 	_triangleData = []
 
 	def __init__(self, InputFile):
-		# first pass
 		for line in InputFile:
 			self._triangleData.append([int(v) for v in line.split()])
 		return
@@ -53,4 +52,4 @@ def main():
 
 # call to main
 if __name__ == "__main__":
-    main()
+	main()
