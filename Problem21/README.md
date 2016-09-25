@@ -21,4 +21,4 @@ Nothing wild here.  I used a map to store proper divisor sum keys to generator v
 
 Run-time
 --------
-Unknown.
+O(H_n^(-1/2)) where H_n is the generalized harmonic number at n.

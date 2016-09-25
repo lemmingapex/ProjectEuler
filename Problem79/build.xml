@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<project basedir="." default="jar" name="Problem15">
+<project basedir="." default="jar" name="Problem79">
     <property name="jarname" value="passcodederivation"/>
     <property name="target" value="./target/${jarname}.jar"/>
     <property name="debuglevel" value="source,lines,vars"/>
@@ -28,7 +28,7 @@
     <target depends="build" name="jar">
         <jar destfile="${target}" filesetmanifest="mergewithoutmain">
             <manifest>
-                <attribute name="Main-Class" value="sw.projecteuler.passcodederivation.PasscodeDerivation"/>
+                <attribute name="Main-Class" value="com.lemmingapex.projecteuler.passcodederivation.PasscodeDerivation"/>
                 <attribute name="Class-Path" value="."/>
             </manifest>
             <fileset dir="./bin"/>

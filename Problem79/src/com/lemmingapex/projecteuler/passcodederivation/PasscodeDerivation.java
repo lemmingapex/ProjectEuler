@@ -1,4 +1,4 @@
-package sw.projecteuler.passcodederivation;
+package com.lemmingapex.projecteuler.passcodederivation;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -11,9 +11,9 @@ import java.util.Set;
 
 /**
  * 02/15/2015 PasscodeDerivation.java Passcode Derivation
- * 
+ *
  * @author Scott Wiedemann
- * 
+ *
  */
 public class PasscodeDerivation {
 
