@@ -53,6 +53,9 @@ public class NonabundantSums {
 		for(long i = upperBound; i>0; i--) {
 			boolean isISumOfTwoAbundantNumbers = false;
 			for(long l : abundantNumbers) {
+				if(i-l < 1) {
+					break;
+				}
 				if(abundantNumbers.contains(i - l)) {
 					isISumOfTwoAbundantNumbers = true;
 					break;
