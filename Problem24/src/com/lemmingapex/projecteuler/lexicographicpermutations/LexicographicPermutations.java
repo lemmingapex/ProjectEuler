@@ -1,5 +1,6 @@
 package com.lemmingapex.projecteuler.lexicographicpermutations;
 
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,8 +23,6 @@ public class LexicographicPermutations {
 	}
 
 	public String solve(long N) {
-		// adjust the index by one
-		N--;
 		String solution = "";
 
 		List<Long> digitsAvailable = new ArrayList<Long>();
@@ -31,22 +30,62 @@ public class LexicographicPermutations {
 			digitsAvailable.add(l);
 		}
 
-		double percent = ((double)N)/factorial(digitsAvailable.size());
-		// System.out.println("percent " + percent);
+		BigInteger percentNumerator = BigInteger.valueOf(N);
+		BigInteger percentDenominator = BigInteger.valueOf(factorial(digitsAvailable.size()));
+
+		// reduce the fraction
+		BigInteger gcd = percentNumerator.gcd(percentDenominator);
+		percentNumerator = percentNumerator.divide(gcd);
+		percentDenominator = percentDenominator.divide(gcd);
+
 		while(digitsAvailable.size() > 1) {
-			// System.out.println("size " + digitsAvailable.size());
-			int index = (int)(percent*digitsAvailable.size());
-			// System.out.println("fpindex " + percent*digitsAvailable.size());
+			//// find the index
+			BigInteger index = BigInteger.valueOf(digitsAvailable.size() - 1);
+			if(!percentDenominator.equals(BigInteger.ONE)) {
+				BigInteger percentNumeratorIndex = percentNumerator.multiply(BigInteger.valueOf(digitsAvailable.size()));
+
+				// reduce the fraction
+				gcd = percentNumeratorIndex.gcd(percentDenominator);
+				percentNumeratorIndex = percentNumeratorIndex.divide(gcd);
+				BigInteger percentDenominatorIndex = percentDenominator.divide(gcd);
+
+				index = percentNumeratorIndex.divide(percentDenominatorIndex);
+				if(percentNumeratorIndex.remainder(percentDenominatorIndex).equals(BigInteger.ZERO)) {
+					index = index.subtract(BigInteger.ONE);
+				}
+			}
 			// System.out.println("index " + index);
 			// for(Long l : digitsAvailable) {
 			// 	System.out.print(l + " ");
 			// }
 			// System.out.println("");
-			long digit = digitsAvailable.get(index);
+			long digit = digitsAvailable.get(index.intValue());
 			// System.out.println("digit " + digit + "\n");
 			solution += digit;
-			percent = (percent*digitsAvailable.size()) - index;
-			// System.out.println("percent " + percent);
+
+			//// update precentage
+			percentNumerator = percentNumerator.multiply(BigInteger.valueOf(digitsAvailable.size()));
+
+			// reduce the fraction
+			gcd = percentNumerator.gcd(percentDenominator);
+			percentNumerator = percentNumerator.divide(gcd);
+			percentDenominator = percentDenominator.divide(gcd);
+
+			if(percentNumerator.remainder(percentDenominator).equals(BigInteger.ZERO)) {
+				percentNumerator = percentNumerator.divide(percentDenominator);
+				percentNumerator = percentNumerator.subtract(BigInteger.ONE);
+				percentDenominator = BigInteger.valueOf(1L);
+			} else {
+				percentNumerator = percentNumerator.remainder(percentDenominator);
+			}
+
+			// reduce the fraction
+			gcd = percentNumerator.gcd(percentDenominator);
+			percentNumerator = percentNumerator.divide(gcd);
+			percentDenominator = percentDenominator.divide(gcd);
+
+			// System.out.println("percentNumerator " + percentNumerator);
+			// System.out.println("percentDenominator " + percentDenominator);
 			digitsAvailable.remove(digit);
 		}
 		solution += digitsAvailable.get(0);
@@ -62,6 +101,6 @@ public class LexicographicPermutations {
 		}
 		Long N = Long.parseLong(args[0]);
 
-		System.out.println("Should be around: " + new LexicographicPermutations().solve(N));
+		System.out.println(new LexicographicPermutations().solve(N));
 	}
 }
