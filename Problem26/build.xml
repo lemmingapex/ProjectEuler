@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<project basedir="." default="jar" name="Problem25">
-    <property name="jarname" value="onethousanddigitfibonaccinumber"/>
+<project basedir="." default="jar" name="Problem26">
+    <property name="jarname" value="reciprocalcycles"/>
     <property name="target" value="./target/${jarname}.jar"/>
     <property name="debuglevel" value="source,lines,vars"/>
     <path id="classpath">
@@ -28,7 +28,7 @@
     <target depends="build" name="jar">
         <jar destfile="${target}" filesetmanifest="mergewithoutmain">
             <manifest>
-                <attribute name="Main-Class" value="com.lemmingapex.projecteuler.onethousanddigitfibonaccinumber.OneThousandDigitFibonacciNumber"/>
+                <attribute name="Main-Class" value="com.lemmingapex.projecteuler.reciprocalcycles.ReciprocalCycles"/>
                 <attribute name="Class-Path" value="."/>
             </manifest>
             <fileset dir="./bin"/>

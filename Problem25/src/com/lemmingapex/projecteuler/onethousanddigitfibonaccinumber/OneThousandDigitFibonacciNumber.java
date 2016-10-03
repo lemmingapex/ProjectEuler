@@ -72,7 +72,7 @@ public class OneThousandDigitFibonacciNumber {
 	public static void main(String[] args) {
 		if (args.length != 1) {
 			System.err.println("Incorrect number of arguments.");
-			System.err.println("Usage: ./lexicographicpermutations.jar N");
+			System.err.println("Usage: ./onethousanddigitfibonaccinumber.jar N");
 			System.exit(1);
 		}
 		Long N = Long.parseLong(args[0]);
