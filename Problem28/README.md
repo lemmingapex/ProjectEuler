@@ -100,6 +100,7 @@ f(3) = 40
 ```
 
 With a little linear algebra, we can easily find a, b, and c:
+
 ![Ax=b](lib/Axb.png)
 
 ![Ax=b](lib/Axb_solved.png)
@@ -108,6 +109,11 @@ With a little linear algebra, we can easily find a, b, and c:
 f(i) = 4*i² + i + 1
 ```
 
+Now we can just add up all the terms; for every grid size from 1 to n.
+
+Also add one for the 1 in the center of the grid.
+
+![Ax=b](lib/sum.png)
 
 Run-time
 --------
