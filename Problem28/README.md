@@ -29,7 +29,7 @@ Here is a 9x9 grid:
 65 64 63 62 61 60 59 58 57
 </pre>
 
-Notice that a square grid formed by the spiral will have an odd number of values along one edge.  Then recognize that an mxm grid should have m^2 entries. (A 9x9 grid will have 9*9 = 81 entries.)
+Notice that a square grid formed by the spiral will have an odd number of values along one edge.  Then recognize that an mxm grid should have m² entries. (A 9x9 grid will have 9*9 = 81 entries.)
 
 Consider the corner numbers for a certain grid size.  For example the corner numbers for a grid of size 7x7 are 31, 37, 43 and 49.
 
@@ -87,6 +87,22 @@ grid size:    1    9   25   49   81    ...
 diff1:           8   16   24   32   ...
 diff2:             8    8    8   ...
 </pre>
+
+The equation should have the form:
+```
+f(i) = a*i² + b*i + c
+```
+By inspection, we know that:
+```
+f(1) = 6
+f(2) = 19
+f(3) = 40
+```
+
+With a little linear algebra, we can easily find a, b, and c:
+
+
+
 
 
 Run-time
