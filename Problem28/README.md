@@ -83,7 +83,7 @@ i:  4  3  2  1  0
    65 64 63 62 61 60 59 58 57
 </pre>
 
-Grid size to index is a linear relationship: ```m = 2*i + 1```.  It seems like we should be able to describe this pattern using a quadratic equation, after all the second differences (derivative) of the grid size is a constant.
+Grid size to index is a linear relationship: ```m = 2*i + 1```.  It seems like we should be able to describe the pattern from index value to average value using a quadratic equation, after all the second differences (derivative) of the grid size is a constant.
 
 <pre>
 grid size:    1    9   25   49   81    ...
