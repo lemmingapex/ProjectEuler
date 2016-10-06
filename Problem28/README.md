@@ -55,7 +55,7 @@ These corner numbers are evenly spaced as well (6 apart in this case).  The sum 
             4(40) = 160
 </pre>
 
-This forulation holds for any mxm spiral grid.  You will notice that the averages for a grid of size m actually appears in the grid; exactly where you would expect them.
+This formulation holds for any mxm spiral grid.  You will notice that the averages for a grid of size m actually appears in the grid; exactly where you would expect them.
 <pre>
 m:  9  7  5  3  1
    73 74 75 76 77 78 79 80 81
