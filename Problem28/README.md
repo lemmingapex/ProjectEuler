@@ -71,7 +71,7 @@ m:  9  7  5  3  1
 
 So we need some way to generate the avearge based on the grid size.  Instead of using the grid size as an input to the function, let's just use an index.
 <pre>
-m:  4  3  2  1  0
+i:  4  3  2  1  0
    73 74 75 76 77 78 79 80 81
    72 43 44 45 46 47 48 49 50
    71 42 21 22 23 24 25 26 51
