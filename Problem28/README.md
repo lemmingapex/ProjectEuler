@@ -100,9 +100,13 @@ f(3) = 40
 ```
 
 With a little linear algebra, we can easily find a, b, and c:
+![Ax=b](lib/Axb.png)
 
+![Ax=b](lib/Axb_solved.png)
 
-
+```
+f(i) = 4*i² + i + 1
+```
 
 
 Run-time
