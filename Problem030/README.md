@@ -24,34 +24,34 @@ When N is 5, x is about 5.5. So the largest number we need to check is around 10
 
 Second, notice that the order of the sum in not important.
 
-1634 = 1^4 + 6^4 + 3^4 + 4^4
-same as
+1634 = 1^4 + 6^4 + 3^4 + 4^4  
+same as  
 1634 = 1^4 + 3^4 + 4^4 + 6^4
 
 So checking all the combinations of the digits 1,3,4 and 6 is repetitive.  Need not consider unique permutations.  Thurs we will only check numbers that contain digits of non-decreasing value:
-00
-01
-02
-03
-04
-05
-06
-07
-08
-09
-11
-12
-13
-14
-15
-16
-17
-18
-19
-22
-23
-24
-etc.
+00  
+01  
+02  
+03  
+04  
+05  
+06  
+07  
+08  
+09  
+11  
+12  
+13  
+14  
+15  
+16  
+17  
+18  
+19  
+22  
+23  
+24  
+etc.  
 
 10 is already covered by 01.  20 is covered by 02.  21 is covered by 12. etc.
 
