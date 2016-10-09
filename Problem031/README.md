@@ -15,7 +15,9 @@ Run It
 
 Thoughts
 --------
-Used a subset-sum approach, which way overkill for this problem; gets the right answer in time regardless (as well as every answer less than 200).  Should have uses a simple recursive program instead.
+The first approach uses a subset-sum method, which way overkill for this problem; gets the right answer in time regardless (as well as every answer less than 200)...
+
+Second approach is much faster and uses recursion.
 
 Run-time
 --------
