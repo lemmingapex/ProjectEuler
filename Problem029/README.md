@@ -15,7 +15,7 @@ Run It
 
 Thoughts
 --------
-BigInteger.
+BigInteger; I'm lame.  Could I have checked if the log(a^b) or b*log(a) was a duplicate?  Maybe, but the floating point errors...
 
 Run-time
 --------
