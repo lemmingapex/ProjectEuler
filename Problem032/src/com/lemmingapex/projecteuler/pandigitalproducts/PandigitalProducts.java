@@ -58,7 +58,7 @@ public class PandigitalProducts {
 
 		// the last digit of the multiplier can not be 1.  If it were, then the last digit of the product would be the same as the multiplicand.
 		// by symmetry the last digit of the multiplicand can not be 1.
-		// 1*ABC = XYC
+		// XY1*ABC = IJC
 		if(jString.charAt(jString.length() - 1) == '1' || kString.charAt(kString.length() - 1) == '1') {
 			return false;
 		}
@@ -72,14 +72,14 @@ public class PandigitalProducts {
 		Set<Integer> validProducts = new HashSet<Integer>();
 
 		// observations:
-		// 1) the product should be larger than the multiplicand and the multiplier.  multiplication with positive integers makes a number larger.  Therefore, the product should conatin as many digits as the multiplicand and the product should contain as many digits as the multiplier.
-		// 2) you can as observe that the number of digits in the product can be at most the sum of the number of digits in the multiplicand and the multiplier. 999*999= 998001 for example.
+		// 1) The product should be larger than the multiplicand and the multiplier.  Multiplication with positive integers makes a number larger.  Therefore, the product should contain as many digits as the multiplicand and the product should contain as many digits as the multiplier.
+		// 2) Observe that the number of digits in the product can be at most the sum of the number of digits in the multiplicand and the multiplier. 999*999= 998001 for example.
 		// XXXXXX * Y = ZZ is not valid by observation 1
 		// XXXXX * Y = ZZZ is not valid by observation 1
 		// XXXX * Y = ZZZZ is valid
 		// XXX * Y = ZZZZZ is not valid by observation 2
 		// XXX * YY = ZZZZ is valid
-		// Z is therefore bounded between the largest 4 digit number that can be made with the digits 1 to 9: 9876, and the smallest 4 digit number that can be made with the digits 1 to 9: 1234
+		// Z is therefore bounded between the largest four digit number that can be made with the digits 1 to 9: 9876, and the smallest 4 digit number that can be made with the digits 1 to 9: 1234
 
 		int upperBound = 9876;
 		int lowerBound = 1234;
