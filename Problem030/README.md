@@ -18,7 +18,7 @@ Thoughts
 
 Let's first consider an upper bound.  If each digit can contribute at most 9^5 values, then how many digits can x numbers consume?  Somewhere around:
 
-x*9^N = 10^N
+x*9^N = 10^x
 
 When N is 5, x is about 5.5. So the largest number we need to check is around 10^6.  We can use that as an upper bound.  So 0 - 10^6.
 
