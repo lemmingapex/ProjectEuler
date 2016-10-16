@@ -1,7 +1,7 @@
 package com.lemmingapex.projecteuler.sudoku;
 
 import java.util.ArrayList;
-import java.util.Collection;
+import java.util.List;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -9,8 +9,8 @@ import java.io.IOException;
 
 public class BoardReader {
 
-	public static Collection<Board> readFile(File boardsFile) {
-		Collection<Board> boards = new ArrayList<Board>();
+	public static List<Board> readFile(File boardsFile) {
+		List<Board> boards = new ArrayList<Board>();
 
 		BufferedReader br = null;
 		try {

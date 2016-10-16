@@ -1,7 +1,7 @@
 package com.lemmingapex.projecteuler.sudoku;
 
 import java.io.File;
-import java.util.Collection;
+import java.util.List;
 
 /**
  * 10/15/2016
@@ -12,6 +12,17 @@ import java.util.Collection;
  *
  */
 public class SuDoku {
+
+	public void solve(Board board) {
+		System.out.println(board);
+		board.updatePossibleValues();
+		for(int i=0; i<Board.BOARD_SIZE; i++) {
+			for(int j=0; j<Board.BOARD_SIZE; j++) {
+				System.out.println(board.getSquare(i,j).getPossibleValues());
+			}
+			System.out.println("");
+		}
+	}
 
 	public long sumOfUpperLeftValues() {
 		return 0L;
@@ -41,9 +52,10 @@ public class SuDoku {
 			System.exit(4);
 		}
 
-		Collection<Board> boards = new BoardReader().readFile(inputFile);
-		System.out.println(boards.iterator().next());
+		SuDoku suDokuSolver = new SuDoku();
+		List<Board> boards = new BoardReader().readFile(inputFile);
+		suDokuSolver.solve(boards.get(0));
 
-		System.out.println(new SuDoku().sumOfUpperLeftValues());
+		//System.out.println(new SuDoku().sumOfUpperLeftValues());
 	}
 }
