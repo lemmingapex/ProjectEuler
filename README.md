@@ -1,3 +1,3 @@
 # ProjectEuler
 
-My work for some of the problems on [Project Euler](http://projecteuler.net/problems)
+My thoughts and work for some [Project Euler](http://projecteuler.net/problems) problems
