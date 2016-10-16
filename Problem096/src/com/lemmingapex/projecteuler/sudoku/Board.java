@@ -2,6 +2,8 @@ package com.lemmingapex.projecteuler.sudoku;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Set;
 import java.util.TreeSet;
 
@@ -68,6 +70,56 @@ public class Board {
 				}
 			}
 		}
+	}
+
+	public boolean updateValuesFromPossibleValues() {
+		boolean madeChanges = false;
+		// for(int row=0; row<BOARD_SIZE; row++) {
+		// 	for(int col=0; col<BOARD_SIZE; col++) {
+		// 		Square square = grid[row][col];
+		// 		// if there is only one possible value, assign it
+		// 		if(square.getPossibleValues().size() == 1) {
+		// 			square.setValue(square.getPossibleValues().iterator().next());
+		// 			madeChanges = true;
+		// 		}
+		// 	}
+		// }
+
+		for(int row=0; row<BOARD_SIZE; row++) {
+			Map<Integer, Integer> uniquePossibleValuesToColIndex = new HashMap<Integer, Integer>();
+			for(int col=0; col<BOARD_SIZE; col++) {
+				Square square = grid[row][col];
+				for(Integer p : square.getPossibleValues()) {
+					Integer colIndex = uniquePossibleValuesToColIndex.get(p);
+					if(colIndex == null) {
+						uniquePossibleValuesToColIndex.put(p, col);
+					} else {
+						// something already there? this doesn't map to anything
+						uniquePossibleValuesToColIndex.put(p, -1);
+					}
+				}
+			}
+			for(Integer uniquePossbileValue : uniquePossibleValuesToColIndex.keySet()) {
+				Integer colIndex = uniquePossibleValuesToColIndex.get(uniquePossbileValue);
+				if(colIndex != null && colIndex != -1) {
+					grid[row][colIndex].setValue(uniquePossbileValue);
+					madeChanges = true;
+				}
+			}
+		}
+		// for(Integer p : square.getPossibleValues())
+		// 	// check the row to see if a possible value only appears once, if so assign it
+		// 	for(int k=0; k<BOARD_SIZE; k++) {
+		// 		if(k != row) {
+		// 			if(grid[k][col].getPossibleValues().contains()) {
+		// 				break;
+		// 			}
+		// 		}
+		// 	}
+		// }
+
+
+		return madeChanges;
 	}
 
 	public Square getSquare(int row, int column) {

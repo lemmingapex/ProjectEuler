@@ -14,6 +14,7 @@ public class Square {
 
 	public void setValue(Integer value) {
 		this.value = value;
+		this.possibleValues = new TreeSet<Integer>();
 	}
 
 	public Set<Integer> getPossibleValues() {

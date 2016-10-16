@@ -14,14 +14,18 @@ import java.util.List;
 public class SuDoku {
 
 	public void solve(Board board) {
-		System.out.println(board);
-		board.updatePossibleValues();
-		for(int i=0; i<Board.BOARD_SIZE; i++) {
-			for(int j=0; j<Board.BOARD_SIZE; j++) {
-				System.out.println(board.getSquare(i,j).getPossibleValues());
-			}
-			System.out.println("");
-		}
+		boolean madeChanges = false;
+		do {
+			System.out.println(board);
+			board.updatePossibleValues();
+			// for(int i=0; i<Board.BOARD_SIZE; i++) {
+			// 	for(int j=0; j<Board.BOARD_SIZE; j++) {
+			// 		System.out.println(board.getSquare(i,j).getPossibleValues());
+			// 	}
+			// 	System.out.println("");
+			// }
+			madeChanges = board.updateValuesFromPossibleValues();
+		} while(madeChanges);
 	}
 
 	public long sumOfUpperLeftValues() {
@@ -54,7 +58,12 @@ public class SuDoku {
 
 		SuDoku suDokuSolver = new SuDoku();
 		List<Board> boards = new BoardReader().readFile(inputFile);
-		suDokuSolver.solve(boards.get(0));
+		//suDokuSolver.solve(boards.get(0);
+		for(Board b : boards) {
+			System.out.println("new board");
+			suDokuSolver.solve(b);
+		}
+
 
 		//System.out.println(new SuDoku().sumOfUpperLeftValues());
 	}
