@@ -28,7 +28,7 @@
     <target depends="build" name="jar">
         <jar destfile="${target}" filesetmanifest="mergewithoutmain">
             <manifest>
-                <attribute name="Main-Class" value="sw.projecteuler.lps.LPS"/>
+                <attribute name="Main-Class" value="com.lemmingapex.projecteuler.lps.LPS"/>
                 <attribute name="Class-Path" value="."/>
             </manifest>
             <fileset dir="./bin"/>
