@@ -1,22 +1,18 @@
-[Even Fibonacci numbers](http://projecteuler.net/problem=2)
-====================
+# [Even Fibonacci numbers](http://projecteuler.net/problem=2)
 Scott Wiedemann
 
 04/28/2013
 
-Compile It
-----------
+## Compile It
 cd ./src  
 make
 
 
-Run It
-------
+## Run It
 ./evenfib
 
 
-Thoughts
---------
+## Thoughts
 
 ![table](lib/table.png)
 
@@ -58,6 +54,5 @@ n = _F_to_i(3999999)/3_
 
 By using the above equations, a closed form can easily be written describing the sum of every third number--every even number--in the sequence up to n.
 
-Run-time
---------
+## Run-time
 O(1)

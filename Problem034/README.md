@@ -1,22 +1,17 @@
-[Digit factorials](http://projecteuler.net/problem=34)
-====================
+# [Digit factorials](http://projecteuler.net/problem=34)
 Scott Wiedemann
 
 10/12/2016
 
-Compile It
-----------
+## Compile It
 ant
 
 
-Run It
-------
+## Run It
 ./target/digitfactorials.jar
 
-Thoughts
---------
+## Thoughts
 Nothing fancy here.  This problem is dumb.  2 numbers, great...
 
-Run-time
---------
+## Run-time
 Unknown

@@ -1,22 +1,18 @@
-[Sum square difference](http://projecteuler.net/problem=6)
-====================
+# [Sum square difference](http://projecteuler.net/problem=6)
 Scott Wiedemann
 
 05/28/2013
 
-Compile It
-----------
+## Compile It
 cd ./src
 make
 
 
-Run It
-------
+## Run It
 ./ssd [N]
 
 
-Thoughts
---------
+## Thoughts
 
 ![arithmetic_series](lib/arithmetic_series.png)
 
@@ -24,6 +20,5 @@ Thoughts
 
 ![sum](lib/sum.png)
 
-Run-time
---------
+## Run-time
 O(1)

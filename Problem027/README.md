@@ -1,22 +1,17 @@
-[Quadratic primes](http://projecteuler.net/problem=27)
-====================
+# [Quadratic primes](http://projecteuler.net/problem=27)
 Scott Wiedemann
 
 10/04/2016
 
-Compile It
-----------
+# Compile It
 ant
 
 
-Run It
-------
+# Run It
 ./target/quadraticprimes.jar 999 1000
 
-Thoughts
---------
+# Thoughts
 Nothing fancy here, brute force solution.
 
-Run-time
---------
+# Run-time
 Unknown.

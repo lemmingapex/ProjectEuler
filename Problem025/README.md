@@ -1,22 +1,17 @@
-[1000-digit Fibonacci number](http://projecteuler.net/problem=25)
-====================
+# [1000-digit Fibonacci number](http://projecteuler.net/problem=25)
 Scott Wiedemann
 
 09/29/2016
 
-Compile It
-----------
+## Compile It
 ant
 
 
-Run It
-------
+## Run It
 ./target/onethousanddigitfibonaccinumber.jar 1000
 
-Thoughts
---------
+## Thoughts
 BigInteger
 
-Run-time
---------
+## Run-time
 Unknown.

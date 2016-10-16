@@ -1,22 +1,17 @@
-[Non-abundant sums](http://projecteuler.net/problem=23)
-====================
+# [Non-abundant sums](http://projecteuler.net/problem=23)
 Scott Wiedemann
 
 09/25/2016
 
-Compile It
-----------
+## Compile It
 ant
 
 
-Run It
-------
+## Run It
 ./target/nonabundantsums.jar
 
-Thoughts
---------
+## Thoughts
 Noting fancy here.
 
-Run-time
---------
+## Run-time
 Unknown.

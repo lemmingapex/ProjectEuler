@@ -1,24 +1,19 @@
-[Power digit sum](http://projecteuler.net/problem=16)
-====================
+# [Power digit sum](http://projecteuler.net/problem=16)
 Scott Wiedemann
 
 01/18/2016
 
-Compile It
-----------
+## Compile It
 ant
 
 
-Run It
-------
+## Run It
 ./target/powerdigitsum.jar N
 
 N is 2^N.  1000 in this case.
 
-Thoughts
---------
+## Thoughts
 BigInteger.
 
-Run-time
---------
+## Run-time
 Unknown.

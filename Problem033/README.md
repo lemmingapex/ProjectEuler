@@ -1,22 +1,17 @@
-[Digit cancelling fractions](http://projecteuler.net/problem=33)
-====================
+# [Digit cancelling fractions](http://projecteuler.net/problem=33)
 Scott Wiedemann
 
 10/11/2016
 
-Compile It
-----------
+## Compile It
 ant
 
 
-Run It
-------
+## Run It
 ./target/digitcancellingfractions.jar 2
 
-Thoughts
---------
+## Thoughts
 2 is the number of digits.  Nothing fancy here.
 
-Run-time
---------
+## Run-time
 Unknown

@@ -1,19 +1,15 @@
-[Special Pythagorean triplet](http://projecteuler.net/problem=9)
-====================
+# [Special Pythagorean triplet](http://projecteuler.net/problem=9)
 Scott Wiedemann
 
 07/14/2013
 
-Compile It
-----------
+## Compile It
 ant
 
 
-Run It
-------
+## Run It
 ./target/spt.jar
 
 
-Run-time
---------
+## Run-time
 Unknown.

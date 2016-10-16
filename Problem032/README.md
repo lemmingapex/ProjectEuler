@@ -1,21 +1,16 @@
-[Pandigital products](http://projecteuler.net/problem=32)
-====================
+# [Pandigital products](http://projecteuler.net/problem=32)
 Scott Wiedemann
 
 10/10/2016
 
-Compile It
-----------
+## Compile It
 ant
 
 
-Run It
-------
+## Run It
 ./target/pandigitalproducts.jar
 
-Thoughts
---------
-
+## Thoughts
 Observations:  
 1) The product should be larger than the multiplicand and the multiplier.  Multiplication with positive integers makes a number larger.  Therefore, the product should contain as many digits as the multiplicand and the product should contain as many digits as the multiplier.  
 
@@ -33,6 +28,5 @@ Note that the last digit of the product can not be 5.  All multiples of 5 end in
 Note that the last digit of the multiplier can not be 1.  If it were, then the last digit of the product would be the same as the multiplicand.  And by symmetry the last digit of the multiplicand can not be 1.  
 XY1*ABC = IJC  
 
-Run-time
---------
+## Run-time
 Unknown
