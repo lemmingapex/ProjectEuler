@@ -72,54 +72,125 @@ public class Board {
 		}
 	}
 
-	public boolean updateValuesFromPossibleValues() {
+	public void populateUsingConstraints() {
 		boolean madeChanges = false;
-		// for(int row=0; row<BOARD_SIZE; row++) {
-		// 	for(int col=0; col<BOARD_SIZE; col++) {
-		// 		Square square = grid[row][col];
-		// 		// if there is only one possible value, assign it
-		// 		if(square.getPossibleValues().size() == 1) {
-		// 			square.setValue(square.getPossibleValues().iterator().next());
-		// 			madeChanges = true;
-		// 		}
-		// 	}
-		// }
+		do {
+			System.out.println(this);
+			madeChanges = updateValuesFromPossibleValues();
+		} while(madeChanges);
+	}
+
+	private boolean updateValuesFromPossibleValuesMethod1() {
+		boolean madeChanges = false;
+
+		// 1) If the number of possible values for a square is one, then that value must be the value for the square.
+		for(int row=0; row<BOARD_SIZE; row++) {
+			for(int col=0; col<BOARD_SIZE; col++) {
+				Square square = grid[row][col];
+				// if there is only one possible value, assign it
+				if(square.getPossibleValues().size() == 1) {
+					square.setValue(square.getPossibleValues().iterator().next());
+					madeChanges = true;
+				}
+			}
+		}
+		updatePossibleValues();
+		return madeChanges;
+	}
+
+	private boolean updateValuesFromPossibleValuesMethod2() {
+		boolean madeChanges = false;
+
+		// 2) If a possible value appears only once in it's row, it's column, or it's block, then that value must be the value for the square.
+		List<Map<Integer, Integer>> rowsUniquePossibleValuesToColIndex = new ArrayList<Map<Integer, Integer>>(BOARD_SIZE);
+		List<Map<Integer, Integer>> colsUniquePossibleValuesToRowIndex = new ArrayList<Map<Integer, Integer>>(BOARD_SIZE);
+		List<Map<Integer, Integer>> blocksUniquePossibleValuesToBlockIndex = new ArrayList<Map<Integer, Integer>>(BOARD_SIZE);
+		for(int i=0; i<BOARD_SIZE; i++) {
+			rowsUniquePossibleValuesToColIndex.add(new HashMap<Integer, Integer>());
+			colsUniquePossibleValuesToRowIndex.add(new HashMap<Integer, Integer>());
+			blocksUniquePossibleValuesToBlockIndex.add(new HashMap<Integer, Integer>());
+		}
 
 		for(int row=0; row<BOARD_SIZE; row++) {
-			Map<Integer, Integer> uniquePossibleValuesToColIndex = new HashMap<Integer, Integer>();
 			for(int col=0; col<BOARD_SIZE; col++) {
 				Square square = grid[row][col];
 				for(Integer p : square.getPossibleValues()) {
-					Integer colIndex = uniquePossibleValuesToColIndex.get(p);
+					Integer colIndex = rowsUniquePossibleValuesToColIndex.get(row).get(p);
 					if(colIndex == null) {
-						uniquePossibleValuesToColIndex.put(p, col);
+						rowsUniquePossibleValuesToColIndex.get(row).put(p, col);
 					} else {
 						// something already there? this doesn't map to anything
-						uniquePossibleValuesToColIndex.put(p, -1);
+						rowsUniquePossibleValuesToColIndex.get(row).put(p, -1);
 					}
+					Integer rowIndex = colsUniquePossibleValuesToRowIndex.get(col).get(p);
+					if(rowIndex == null) {
+						colsUniquePossibleValuesToRowIndex.get(col).put(p, row);
+					} else {
+						// something already there? this doesn't map to anything
+						colsUniquePossibleValuesToRowIndex.get(col).put(p, -1);
+					}
+					// int block = getBlock(row, col);
+					// Integer blockIndex = blocksUniquePossibleValuesToBlockIndex.get(block).get(p);
+					// if(blockIndex == null) {
+					// 	int blockIndexRow = (row - (row/BLOCK_SIZE)*BLOCK_SIZE);
+					// 	int blockIndexCol = (col - (col/BLOCK_SIZE)*BLOCK_SIZE);
+					// 	int blockI = getBlock(blockIndexRow, blockIndexCol);
+					// 	blocksUniquePossibleValuesToBlockIndex.get(block).put(p, blockI);
+					// } else {
+					// 	// something already there? this doesn't map to anything
+					// 	blocksUniquePossibleValuesToBlockIndex.get(block).put(p, -1);
+					// }
 				}
 			}
-			for(Integer uniquePossbileValue : uniquePossibleValuesToColIndex.keySet()) {
-				Integer colIndex = uniquePossibleValuesToColIndex.get(uniquePossbileValue);
+		}
+
+		for(int row=0; row<BOARD_SIZE; row++) {
+			for(Integer uniquePossbileValue : rowsUniquePossibleValuesToColIndex.get(row).keySet()) {
+				Integer colIndex = rowsUniquePossibleValuesToColIndex.get(row).get(uniquePossbileValue);
 				if(colIndex != null && colIndex != -1) {
 					grid[row][colIndex].setValue(uniquePossbileValue);
 					madeChanges = true;
 				}
 			}
 		}
-		// for(Integer p : square.getPossibleValues())
-		// 	// check the row to see if a possible value only appears once, if so assign it
-		// 	for(int k=0; k<BOARD_SIZE; k++) {
-		// 		if(k != row) {
-		// 			if(grid[k][col].getPossibleValues().contains()) {
-		// 				break;
-		// 			}
+		updatePossibleValues();
+
+		for(int col=0; col<BOARD_SIZE; col++) {
+			for(Integer uniquePossbileValue : colsUniquePossibleValuesToRowIndex.get(col).keySet()) {
+				Integer rowIndex = colsUniquePossibleValuesToRowIndex.get(col).get(uniquePossbileValue);
+				if(rowIndex != null && rowIndex != -1) {
+					grid[rowIndex][col].setValue(uniquePossbileValue);
+					madeChanges = true;
+				}
+			}
+		}
+		updatePossibleValues();
+
+		// for(int block=0; block<BOARD_SIZE; block++) {
+		// 	for(Integer uniquePossbileValue : blocksUniquePossibleValuesToBlockIndex.get(block).keySet()) {
+		// 		Integer blockIndex = blocksUniquePossibleValuesToBlockIndex.get(block).get(uniquePossbileValue);
+		// 		if(blockIndex != null && blockIndex != -1) {
+		// 			int blockRow = block/3;
+		// 			int blockCol = block%3;
+		// 			int blockIndexRow = blockIndex/3;
+		// 			int blockIndexCol = blockIndex%3;
+		// 			int row = (blockRow*3)+blockIndexRow;
+		// 			int col = (blockCol*3)+blockIndexCol;
+		// 			grid[row][col].setValue(uniquePossbileValue);
+		// 			madeChanges = true;
 		// 		}
 		// 	}
 		// }
-
+		// updatePossibleValues();
 
 		return madeChanges;
+	}
+
+	public boolean updateValuesFromPossibleValues() {
+		boolean madeChangesMethod1 = updateValuesFromPossibleValuesMethod1();
+		boolean madeChangesMethod2 = updateValuesFromPossibleValuesMethod2();
+
+		return madeChangesMethod1 || madeChangesMethod2;
 	}
 
 	public Square getSquare(int row, int column) {

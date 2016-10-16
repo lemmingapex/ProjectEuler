@@ -35,6 +35,7 @@ public class BoardReader {
 					line = br.readLine();
 					rowIndex++;
 				}
+				board.updatePossibleValues();
 				boards.add(board);
 			}
 		} catch (Exception e) {

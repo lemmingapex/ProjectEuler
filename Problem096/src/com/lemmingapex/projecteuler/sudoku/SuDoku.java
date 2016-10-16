@@ -14,18 +14,7 @@ import java.util.List;
 public class SuDoku {
 
 	public void solve(Board board) {
-		boolean madeChanges = false;
-		do {
-			System.out.println(board);
-			board.updatePossibleValues();
-			// for(int i=0; i<Board.BOARD_SIZE; i++) {
-			// 	for(int j=0; j<Board.BOARD_SIZE; j++) {
-			// 		System.out.println(board.getSquare(i,j).getPossibleValues());
-			// 	}
-			// 	System.out.println("");
-			// }
-			madeChanges = board.updateValuesFromPossibleValues();
-		} while(madeChanges);
+		board.populateUsingConstraints();		
 	}
 
 	public long sumOfUpperLeftValues() {
