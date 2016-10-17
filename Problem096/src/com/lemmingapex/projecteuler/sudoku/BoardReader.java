@@ -19,7 +19,7 @@ public class BoardReader {
 			while (line != null && !line.trim().isEmpty()) {
 				Board board = new Board();
 				int rowIndex=0;
-				while(line != null && !line.trim().isEmpty() && rowIndex < 10) {
+				while(line != null && !line.trim().isEmpty() && rowIndex < Board.BOARD_SIZE + 1) {
 					// ignore the first line
 					if(rowIndex > 0) {
 						int colIndex=0;

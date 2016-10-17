@@ -9,8 +9,8 @@ import java.util.TreeSet;
 
 public class Board {
 
-	public static final int BOARD_SIZE = 9;
-	public static final int BLOCK_SIZE = (int)Math.sqrt(BOARD_SIZE);
+	public static final int BLOCK_SIZE = 3;
+	public static final int BOARD_SIZE = BLOCK_SIZE*BLOCK_SIZE;
 
 	// 0,0 is the upper-left
 	// 0,8 is the upper-right
@@ -40,9 +40,70 @@ public class Board {
 		return true;
 	}
 
-	// TODO
+	// does each row col and block contain unique values?
 	public boolean isLegalPlacement() {
-		return false;
+		boolean isLegalPlacement = true;
+		List<Set<Integer>> rowsValues = new ArrayList<Set<Integer>>(BOARD_SIZE);
+		List<Set<Integer>> colsValues = new ArrayList<Set<Integer>>(BOARD_SIZE);
+		List<Set<Integer>> blocksValues = new ArrayList<Set<Integer>>(BOARD_SIZE);
+
+		for(int i=0; i<BOARD_SIZE; i++) {
+			rowsValues.add(new TreeSet<Integer>());
+			colsValues.add(new TreeSet<Integer>());
+			blocksValues.add(new TreeSet<Integer>());
+		}
+
+		for(int row=0; row<BOARD_SIZE; row++) {
+			Set<Integer> rowValues = rowsValues.get(row);
+			for(int col=0; col<BOARD_SIZE; col++) {
+				Integer value = grid[row][col].getValue();
+				if(value != null) {
+					Set<Integer> colValues = colsValues.get(col);
+					Set<Integer> blockValues = blocksValues.get(getBlock(row, col));
+					if(!rowValues.contains(value)) {
+						rowValues.add(value);
+					} else {
+						isLegalPlacement = false;
+						break;
+					}
+					if(!colValues.contains(value)) {
+						colValues.add(value);
+					} else {
+						isLegalPlacement = false;
+						break;
+					}
+					if(!blockValues.contains(value)) {
+						blockValues.add(value);
+					} else {
+						isLegalPlacement = false;
+						break;
+					}
+				}
+			}
+			if(!isLegalPlacement) {
+				break;
+			}
+		}
+		return isLegalPlacement;
+	}
+
+	public boolean isSolved() {
+		boolean isSolved = true;
+		updatePossibleValues();
+		if(!isLegalPlacement()) {
+			isSolved = false;
+		} else {
+			for(int row=0; row<BOARD_SIZE; row++) {
+				for(int col=0; col<BOARD_SIZE; col++) {
+					Square square = grid[row][col];
+					if(square.getPossibleValues().size() > 0 || square.getValue() == null) {
+						isSolved = false;
+						break;
+					}
+				}
+			}
+		}
+		return isSolved;
 	}
 
 	private int getBlock(int row, int col) {

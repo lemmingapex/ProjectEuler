@@ -13,10 +13,6 @@ import java.util.List;
  */
 public class SuDoku {
 
-	public void solve(Board board) {
-		board.populateUsingConstraints();
-	}
-
 	public long sumOfUpperLeftValues() {
 		return 0L;
 	}
@@ -50,8 +46,11 @@ public class SuDoku {
 		//suDokuSolver.solve(boards.get(0);
 		for(Board b : boards) {
 			System.out.println("new board");
-			suDokuSolver.solve(b);
 			System.out.println(b);
+			b.populateUsingConstraints();
+			System.out.println(b);
+			System.out.println("b.isLegalPlacement() " + b.isLegalPlacement());
+			System.out.println("b.isSolved() " + b.isSolved());
 		}
 
 
