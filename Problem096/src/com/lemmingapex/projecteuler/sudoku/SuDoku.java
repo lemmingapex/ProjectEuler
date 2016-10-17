@@ -14,7 +14,7 @@ import java.util.List;
 public class SuDoku {
 
 	public void solve(Board board) {
-		board.populateUsingConstraints();		
+		board.populateUsingConstraints();
 	}
 
 	public long sumOfUpperLeftValues() {
@@ -51,6 +51,7 @@ public class SuDoku {
 		for(Board b : boards) {
 			System.out.println("new board");
 			suDokuSolver.solve(b);
+			System.out.println(b);
 		}
 
 

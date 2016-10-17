@@ -26,6 +26,25 @@ public class Board {
 		return possibleValues;
 	}
 
+	public Square getSquare(int row, int column) {
+		return grid[row][column];
+	}
+
+	public Square setSquare(Square square, int row, int column) {
+		grid[row][column] = square;
+		return grid[row][column];
+	}
+
+	// TODO
+	public boolean isRowLegal() {
+		return true;
+	}
+
+	// TODO
+	public boolean isLegalPlacement() {
+		return false;
+	}
+
 	private int getBlock(int row, int col) {
 		return (col/BLOCK_SIZE + (row/BLOCK_SIZE)*BLOCK_SIZE);
 	}
@@ -72,18 +91,10 @@ public class Board {
 		}
 	}
 
-	public void populateUsingConstraints() {
-		boolean madeChanges = false;
-		do {
-			System.out.println(this);
-			madeChanges = updateValuesFromPossibleValues();
-		} while(madeChanges);
-	}
-
+	// 1) If the number of possible values for a square is one, then that value must be the value for the square.
 	private boolean updateValuesFromPossibleValuesMethod1() {
 		boolean madeChanges = false;
 
-		// 1) If the number of possible values for a square is one, then that value must be the value for the square.
 		for(int row=0; row<BOARD_SIZE; row++) {
 			for(int col=0; col<BOARD_SIZE; col++) {
 				Square square = grid[row][col];
@@ -98,17 +109,17 @@ public class Board {
 		return madeChanges;
 	}
 
+	// 2) If a possible value appears only once in it's row, it's column, or it's block, then that value must be the value for the square.
 	private boolean updateValuesFromPossibleValuesMethod2() {
 		boolean madeChanges = false;
 
-		// 2) If a possible value appears only once in it's row, it's column, or it's block, then that value must be the value for the square.
 		List<Map<Integer, Integer>> rowsUniquePossibleValuesToColIndex = new ArrayList<Map<Integer, Integer>>(BOARD_SIZE);
 		List<Map<Integer, Integer>> colsUniquePossibleValuesToRowIndex = new ArrayList<Map<Integer, Integer>>(BOARD_SIZE);
-		List<Map<Integer, Integer>> blocksUniquePossibleValuesToBlockIndex = new ArrayList<Map<Integer, Integer>>(BOARD_SIZE);
+		List<Map<Integer, Tuple<Integer, Integer>>> blocksUniquePossibleValuesToBlockIndex = new ArrayList<Map<Integer, Tuple<Integer, Integer>>>(BOARD_SIZE);
 		for(int i=0; i<BOARD_SIZE; i++) {
 			rowsUniquePossibleValuesToColIndex.add(new HashMap<Integer, Integer>());
 			colsUniquePossibleValuesToRowIndex.add(new HashMap<Integer, Integer>());
-			blocksUniquePossibleValuesToBlockIndex.add(new HashMap<Integer, Integer>());
+			blocksUniquePossibleValuesToBlockIndex.add(new HashMap<Integer, Tuple<Integer, Integer>>());
 		}
 
 		for(int row=0; row<BOARD_SIZE; row++) {
@@ -129,17 +140,14 @@ public class Board {
 						// something already there? this doesn't map to anything
 						colsUniquePossibleValuesToRowIndex.get(col).put(p, -1);
 					}
-					// int block = getBlock(row, col);
-					// Integer blockIndex = blocksUniquePossibleValuesToBlockIndex.get(block).get(p);
-					// if(blockIndex == null) {
-					// 	int blockIndexRow = (row - (row/BLOCK_SIZE)*BLOCK_SIZE);
-					// 	int blockIndexCol = (col - (col/BLOCK_SIZE)*BLOCK_SIZE);
-					// 	int blockI = getBlock(blockIndexRow, blockIndexCol);
-					// 	blocksUniquePossibleValuesToBlockIndex.get(block).put(p, blockI);
-					// } else {
-					// 	// something already there? this doesn't map to anything
-					// 	blocksUniquePossibleValuesToBlockIndex.get(block).put(p, -1);
-					// }
+					int block = getBlock(row, col);
+					Tuple blockIndex = blocksUniquePossibleValuesToBlockIndex.get(block).get(p);
+					if(blockIndex == null) {
+						blocksUniquePossibleValuesToBlockIndex.get(block).put(p, new Tuple(row, col));
+					} else {
+						// something already there? this doesn't map to anything
+						blocksUniquePossibleValuesToBlockIndex.get(block).put(p, new Tuple(-1, -1));
+					}
 				}
 			}
 		}
@@ -166,22 +174,16 @@ public class Board {
 		}
 		updatePossibleValues();
 
-		// for(int block=0; block<BOARD_SIZE; block++) {
-		// 	for(Integer uniquePossbileValue : blocksUniquePossibleValuesToBlockIndex.get(block).keySet()) {
-		// 		Integer blockIndex = blocksUniquePossibleValuesToBlockIndex.get(block).get(uniquePossbileValue);
-		// 		if(blockIndex != null && blockIndex != -1) {
-		// 			int blockRow = block/3;
-		// 			int blockCol = block%3;
-		// 			int blockIndexRow = blockIndex/3;
-		// 			int blockIndexCol = blockIndex%3;
-		// 			int row = (blockRow*3)+blockIndexRow;
-		// 			int col = (blockCol*3)+blockIndexCol;
-		// 			grid[row][col].setValue(uniquePossbileValue);
-		// 			madeChanges = true;
-		// 		}
-		// 	}
-		// }
-		// updatePossibleValues();
+		for(int block=0; block<BOARD_SIZE; block++) {
+			for(Integer uniquePossbileValue : blocksUniquePossibleValuesToBlockIndex.get(block).keySet()) {
+				Tuple<Integer, Integer> blockIndex = blocksUniquePossibleValuesToBlockIndex.get(block).get(uniquePossbileValue);
+				if(blockIndex != null && blockIndex.x != -1) {
+					grid[blockIndex.x][blockIndex.y].setValue(uniquePossbileValue);
+					madeChanges = true;
+				}
+			}
+		}
+		updatePossibleValues();
 
 		return madeChanges;
 	}
@@ -193,21 +195,12 @@ public class Board {
 		return madeChangesMethod1 || madeChangesMethod2;
 	}
 
-	public Square getSquare(int row, int column) {
-		return grid[row][column];
-	}
-
-	public Square setSquare(Square square, int row, int column) {
-		grid[row][column] = square;
-		return grid[row][column];
-	}
-
-	public boolean isRowLegal() {
-		return true;
-	}
-
-	public boolean isLegalPlacement() {
-		return false;
+	public void populateUsingConstraints() {
+		boolean madeChanges = false;
+		do {
+			// System.out.println(this);
+			madeChanges = updateValuesFromPossibleValues();
+		} while(madeChanges);
 	}
 
 	@Override
