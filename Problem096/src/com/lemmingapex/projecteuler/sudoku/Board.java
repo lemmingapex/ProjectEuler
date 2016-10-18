@@ -8,7 +8,6 @@ import java.util.Set;
 import java.util.TreeSet;
 
 public class Board {
-
 	public static final int BLOCK_SIZE = 3;
 	public static final int BOARD_SIZE = BLOCK_SIZE*BLOCK_SIZE;
 
@@ -33,11 +32,6 @@ public class Board {
 	public Square setSquare(Square square, int row, int column) {
 		grid[row][column] = square;
 		return grid[row][column];
-	}
-
-	// TODO
-	public boolean isRowLegal() {
-		return true;
 	}
 
 	// does each row col and block contain unique values?
@@ -249,19 +243,60 @@ public class Board {
 		return madeChanges;
 	}
 
-	public boolean updateValuesFromPossibleValues() {
-		boolean madeChangesMethod1 = updateValuesFromPossibleValuesMethod1();
-		boolean madeChangesMethod2 = updateValuesFromPossibleValuesMethod2();
-
-		return madeChangesMethod1 || madeChangesMethod2;
-	}
-
-	public void populateUsingConstraints() {
+	public void solveUsingConstraints() {
 		boolean madeChanges = false;
 		do {
 			// System.out.println(this);
-			madeChanges = updateValuesFromPossibleValues();
+			boolean madeChangesMethod1 = updateValuesFromPossibleValuesMethod1();
+			boolean madeChangesMethod2 = updateValuesFromPossibleValuesMethod2();
+			madeChanges = madeChangesMethod1 || madeChangesMethod2;
 		} while(madeChanges);
+	}
+
+	private boolean solveUsingBacktrackingRecursive(Board b) {
+		for(int row=0; row<BOARD_SIZE; row++) {
+			for(int col=0; col<BOARD_SIZE; col++) {
+				Square square = b.getSquare(row, col);
+				if(square.getValue() != null) {
+					continue;
+				}
+				for(Integer p : b.getPossbileSquareValues()) {
+					square.setValue(p);
+					b.updatePossibleValues();
+					if(isLegalPlacement()) {
+						if(solveUsingBacktrackingRecursive(b)) {
+							return true;
+						} else {
+							square.setValue(null);
+							b.updatePossibleValues();
+						}
+					} else {
+						square.setValue(null);
+						b.updatePossibleValues();
+					}
+				}
+				return false;
+			}
+		}
+		return true;
+	}
+
+	public void solveUsingBacktracking() {
+		solveUsingBacktrackingRecursive(this);
+	}
+
+	// will slove a sudoku puzzle efficently using the combination of the methods above
+	public boolean solve() {
+		solveUsingConstraints();
+		boolean solved = isSolved();
+		System.out.println(this);
+		if(!solved) {
+			solveUsingBacktracking();
+			solved = isSolved();
+			System.out.println(this);
+		}
+
+		return solved;
 	}
 
 	@Override

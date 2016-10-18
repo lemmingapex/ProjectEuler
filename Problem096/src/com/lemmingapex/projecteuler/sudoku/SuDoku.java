@@ -13,8 +13,20 @@ import java.util.List;
  */
 public class SuDoku {
 
-	public long sumOfUpperLeftValues() {
-		return 0L;
+	public long sumOfUpperLeftValues(List<Board> boards) {
+		long sum = 0L;
+		for(int i=0; i<boards.size(); i++) {
+			Board b = boards.get(i);
+			System.out.println("board " + i);
+			System.out.println(b);
+			b.solve();
+			String upperLeft = "";
+			for(int j=0; j<Board.BLOCK_SIZE; j++) {
+				upperLeft += b.getSquare(0,j).getValue();
+			}
+			sum += Long.valueOf(upperLeft);
+		}
+		return sum;
 	}
 
 	public static void main(String[] args) {
@@ -41,19 +53,7 @@ public class SuDoku {
 			System.exit(4);
 		}
 
-		SuDoku suDokuSolver = new SuDoku();
 		List<Board> boards = new BoardReader().readFile(inputFile);
-		//suDokuSolver.solve(boards.get(0);
-		for(Board b : boards) {
-			System.out.println("new board");
-			System.out.println(b);
-			b.populateUsingConstraints();
-			System.out.println(b);
-			System.out.println("b.isLegalPlacement() " + b.isLegalPlacement());
-			System.out.println("b.isSolved() " + b.isSolved());
-		}
-
-
-		//System.out.println(new SuDoku().sumOfUpperLeftValues());
+		System.out.println("sum: " + new SuDoku().sumOfUpperLeftValues(boards));
 	}
 }
