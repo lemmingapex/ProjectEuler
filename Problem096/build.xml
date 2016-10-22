@@ -5,6 +5,7 @@
     <property name="debuglevel" value="source,lines,vars"/>
     <path id="classpath">
         <pathelement location="bin"/>
+        <fileset dir="lib" includes="**/*.jar"/>
     </path>
     <target name="init">
         <mkdir dir="bin"/>
@@ -32,6 +33,7 @@
                 <attribute name="Class-Path" value="."/>
             </manifest>
             <fileset dir="./bin"/>
+            <zipgroupfileset dir="./lib" includes="**/*.jar" />
         </jar>
         <chmod file="${target}" perm="755"/>
     </target>

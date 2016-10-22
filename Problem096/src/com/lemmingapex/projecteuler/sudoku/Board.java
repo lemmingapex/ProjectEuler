@@ -1,11 +1,14 @@
 package com.lemmingapex.projecteuler.sudoku;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeSet;
+
+import org.apache.commons.lang3.tuple.MutablePair;
 
 public class Board {
 	public static final int BLOCK_SIZE = 3;
@@ -104,6 +107,7 @@ public class Board {
 		return (col/BLOCK_SIZE + (row/BLOCK_SIZE)*BLOCK_SIZE);
 	}
 
+	// if a value exists in a square's row, column, or block, remove that value from the possible values for the square.
 	public void updatePossibleValues() {
 		List<Set<Integer>> rowsPossbileValues = new ArrayList<Set<Integer>>(BOARD_SIZE);
 		List<Set<Integer>> colsPossbileValues = new ArrayList<Set<Integer>>(BOARD_SIZE);
@@ -113,6 +117,7 @@ public class Board {
 			colsPossbileValues.add(getPossbileSquareValues());
 			blocksPossbileValues.add(getPossbileSquareValues());
 		}
+
 
 		for(int row=0; row<BOARD_SIZE; row++) {
 			Set<Integer> rowPossbileValues = rowsPossbileValues.get(row);
@@ -144,6 +149,62 @@ public class Board {
 				}
 			}
 		}
+
+
+		List<Set<MutablePair<Integer,Integer>>> rowsPairs = new ArrayList<Set<MutablePair<Integer,Integer>>>(BOARD_SIZE);
+		List<Set<MutablePair<Integer,Integer>>> rowsMatchedPairs = new ArrayList<Set<MutablePair<Integer,Integer>>>(BOARD_SIZE);
+		for(int i=0; i<BOARD_SIZE; i++) {
+			rowsPairs.add(new TreeSet<MutablePair<Integer,Integer>>());
+			rowsMatchedPairs.add(new TreeSet<MutablePair<Integer,Integer>>());
+		}
+
+		// TESTING pairs
+		// identify pairs
+		// for(int row=0; row<BOARD_SIZE; row++) {
+		// 	Set<MutablePair<Integer,Integer>> rowPairs = rowsPairs.get(row);
+		// 	for(int col=0; col<BOARD_SIZE; col++) {
+		// 		Square square = grid[row][col];
+		// 		if(square.getValue() == null) {
+		// 			if(square.getPossibleValues().size() == 2) {
+		// 				Iterator<Integer> it = square.getPossibleValues().iterator();
+		// 				MutablePair<Integer,Integer> squarePair = new MutablePair<Integer,Integer>(it.next(), it.next());
+		// 				if(rowPairs.contains(squarePair)) {
+		// 					rowsMatchedPairs.get(row).add(squarePair);
+		// 				} else {
+		// 					rowPairs.add(squarePair);
+		// 				}
+		// 			}
+		// 		}
+		// 	}
+		// }
+		//
+		// for(int row=0; row<BOARD_SIZE; row++) {
+		// 	for(MutablePair<Integer,Integer> t : rowsMatchedPairs.get(row)) {
+		// 		for(int col=0; col<BOARD_SIZE; col++) {
+		// 			Square square = grid[row][col];
+		// 			if(square.getValue() == null) {
+		// 				boolean removeTupleValues = true;
+		// 				if(square.getPossibleValues().size() == 2) {
+		// 					Iterator<Integer> it = square.getPossibleValues().iterator();
+		// 					MutablePair<Integer,Integer> tempSquarePair = new MutablePair<Integer,Integer>(it.next(), it.next());
+		// 					if(t.equals(tempSquarePair)) {
+		// 						removeTupleValues = false;
+		// 					}
+		// 				}
+		//
+		// 				if(removeTupleValues) {
+		// 					if(square.getPossibleValues().remove(t.left)) {
+		// 						//System.out.println("removed " + t.left + " from cell (" + row + ", " + col + ")");
+		// 					}
+		//
+		// 					if(square.getPossibleValues().remove(t.right)) {
+		// 						//System.out.println("removed " + t.right + " from cell (" + row + ", " + col + ")");
+		// 					}
+		// 				}
+		// 			}
+		// 		}
+		// 	}
+		// }
 	}
 
 	// 1) If the number of possible values for a square is one, then that value must be the value for the square.
@@ -170,11 +231,11 @@ public class Board {
 
 		List<Map<Integer, Integer>> rowsUniquePossibleValuesToColIndex = new ArrayList<Map<Integer, Integer>>(BOARD_SIZE);
 		List<Map<Integer, Integer>> colsUniquePossibleValuesToRowIndex = new ArrayList<Map<Integer, Integer>>(BOARD_SIZE);
-		List<Map<Integer, Tuple<Integer, Integer>>> blocksUniquePossibleValuesToBlockIndex = new ArrayList<Map<Integer, Tuple<Integer, Integer>>>(BOARD_SIZE);
+		List<Map<Integer, MutablePair<Integer, Integer>>> blocksUniquePossibleValuesToBlockIndex = new ArrayList<Map<Integer, MutablePair<Integer, Integer>>>(BOARD_SIZE);
 		for(int i=0; i<BOARD_SIZE; i++) {
 			rowsUniquePossibleValuesToColIndex.add(new HashMap<Integer, Integer>());
 			colsUniquePossibleValuesToRowIndex.add(new HashMap<Integer, Integer>());
-			blocksUniquePossibleValuesToBlockIndex.add(new HashMap<Integer, Tuple<Integer, Integer>>());
+			blocksUniquePossibleValuesToBlockIndex.add(new HashMap<Integer, MutablePair<Integer, Integer>>());
 		}
 
 		for(int row=0; row<BOARD_SIZE; row++) {
@@ -196,12 +257,12 @@ public class Board {
 						colsUniquePossibleValuesToRowIndex.get(col).put(p, -1);
 					}
 					int block = getBlock(row, col);
-					Tuple blockIndex = blocksUniquePossibleValuesToBlockIndex.get(block).get(p);
+					MutablePair blockIndex = blocksUniquePossibleValuesToBlockIndex.get(block).get(p);
 					if(blockIndex == null) {
-						blocksUniquePossibleValuesToBlockIndex.get(block).put(p, new Tuple(row, col));
+						blocksUniquePossibleValuesToBlockIndex.get(block).put(p, new MutablePair(row, col));
 					} else {
 						// something already there? this doesn't map to anything
-						blocksUniquePossibleValuesToBlockIndex.get(block).put(p, new Tuple(-1, -1));
+						blocksUniquePossibleValuesToBlockIndex.get(block).put(p, new MutablePair(-1, -1));
 					}
 				}
 			}
@@ -231,9 +292,9 @@ public class Board {
 
 		for(int block=0; block<BOARD_SIZE; block++) {
 			for(Integer uniquePossbileValue : blocksUniquePossibleValuesToBlockIndex.get(block).keySet()) {
-				Tuple<Integer, Integer> blockIndex = blocksUniquePossibleValuesToBlockIndex.get(block).get(uniquePossbileValue);
-				if(blockIndex != null && blockIndex.x != -1) {
-					grid[blockIndex.x][blockIndex.y].setValue(uniquePossbileValue);
+				MutablePair<Integer, Integer> blockIndex = blocksUniquePossibleValuesToBlockIndex.get(block).get(uniquePossbileValue);
+				if(blockIndex != null && blockIndex.left != -1) {
+					grid[blockIndex.left][blockIndex.right].setValue(uniquePossbileValue);
 					madeChanges = true;
 				}
 			}
