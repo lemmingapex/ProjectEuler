@@ -43,11 +43,11 @@ public class PrimePermutations {
 		}
 
 		for(int i = 0; i<primes.size(); i++) {
+			Long p_i = primes.get(i);
+			if(p_i == 1487) {
+				continue;
+			}
 			for(int j = i+1; j<primes.size(); j++) {
-				Long p_i = primes.get(i);
-				if(p_i == 1487) {
-					continue;
-				}
 				Long p_j = primes.get(j);
 				if(isPermutation(p_i, p_j)) {
 					Long p_k = p_j + (p_j - p_i);
