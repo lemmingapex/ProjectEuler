@@ -1,18 +1,14 @@
-package com.lemmingapex.projecteuler.primedigitrreplacements;
-
-import java.util.List;
-
-import com.lemmingapex.basics.primes.PrimeGenerator;
+package com.lemmingapex.projecteuler.primedigitreplacements;
 
 /**
  * 11/17/2016
- * PrimeDigitrReplacements.java
+ * PrimeDigitReplacements.java
  * Prime digit replacements
  *
  * @author Scott Wiedemann
  *
  */
-public class PrimeDigitrReplacements {
+public class PrimeDigitReplacements {
 
 	private boolean isPrime(int p) {
 		if(p == 1) {
@@ -101,10 +97,10 @@ public class PrimeDigitrReplacements {
 	public static void main(String[] args) {
 		if (args.length != 0) {
 			System.err.println("Incorrect number of arguments.");
-			System.err.println("Usage: ./primedigitrreplacements.jar");
+			System.err.println("Usage: ./primedigitreplacements.jar");
 			System.exit(1);
 		}
 
-		System.out.println(new PrimeDigitrReplacements().solve());
+		System.out.println(new PrimeDigitReplacements().solve());
 	}
 }

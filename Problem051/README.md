@@ -8,7 +8,7 @@ ant
 
 
 ## Run It
-./target/primedigitrreplacements.jar
+./target/primedigitreplacements.jar
 
 ## Thoughts
 I think this is the hardest problem thus far.  I had to to a bit of research to figure out how to reduce the search space effectively.  I made some assumptions as well.  I assumed that the number was 5 digits, when the program didn't find a solution, I assumed the number was 6 digits.  Without some type of similar confinement, the general problem appears to be intractable.

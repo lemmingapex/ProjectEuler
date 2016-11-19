@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<project basedir="." default="jar" name="Problem51">
-    <property name="jarname" value="primedigitreplacements"/>
+<project basedir="." default="jar" name="Problem52">
+    <property name="jarname" value="permutedmultiples"/>
     <property name="target" value="./target/${jarname}.jar"/>
     <property name="debuglevel" value="source,lines,vars"/>
     <path id="classpath">
@@ -28,7 +28,7 @@
     <target depends="build" name="jar">
         <jar destfile="${target}" filesetmanifest="mergewithoutmain">
             <manifest>
-                <attribute name="Main-Class" value="com.lemmingapex.projecteuler.primedigitreplacements.PrimeDigitReplacements"/>
+                <attribute name="Main-Class" value="com.lemmingapex.projecteuler.permutedmultiples.PermutedMultiples"/>
                 <attribute name="Class-Path" value="."/>
             </manifest>
             <fileset dir="./bin"/>
