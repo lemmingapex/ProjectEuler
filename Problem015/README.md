@@ -8,7 +8,7 @@ ant
 
 
 ## Run It
-./target/latticepaths.jar N
+java -jar ./target/latticepaths.jar N
 
 N is the size of the grid.
 

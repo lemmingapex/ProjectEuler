@@ -3,15 +3,15 @@ Scott Wiedemann
 
 10/04/2016
 
-# Compile It
+## Compile It
 ant
 
 
-# Run It
-./target/quadraticprimes.jar 999 1000
+## Run It
+java -jar ./target/quadraticprimes.jar 999 1000
 
-# Thoughts
+## Thoughts
 Nothing fancy here, brute force solution.
 
-# Run-time
+## Run-time
 Unknown.

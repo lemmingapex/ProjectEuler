@@ -8,7 +8,7 @@ ant
 
 
 ## Run It
-./target/triangularpentagonalhexagonal.jar
+java -jar ./target/triangularpentagonalhexagonal.jar
 
 ## Thoughts
 Nothing fancy here.

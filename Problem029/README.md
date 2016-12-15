@@ -8,7 +8,7 @@ ant
 
 
 ## Run It
-./target/distinctpowers.jar 100
+java -jar ./target/distinctpowers.jar 100
 
 ## Thoughts
 BigInteger; I'm lame.  Could I have checked if the log(a^b) or b*log(a) was a duplicate?  Maybe, but the floating point errors...

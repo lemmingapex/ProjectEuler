@@ -8,7 +8,7 @@ ant
 
 
 ## Run It
-./target/permutedmultiples.jar
+java -jar ./target/permutedmultiples.jar
 
 ## Thoughts
 Nothing fancy here.

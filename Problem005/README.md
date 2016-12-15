@@ -8,7 +8,7 @@ ant
 
 
 ## Run It
-./target/smallestmultiple.jar N
+java -jar ./target/smallestmultiple.jar N
 
 
 ## Thoughts

@@ -8,7 +8,7 @@ ant
 
 
 ## Run It
-./target/distinctprimesfactors.jar N
+java -jar ./target/distinctprimesfactors.jar N
 
 N is 4 in this case.
 

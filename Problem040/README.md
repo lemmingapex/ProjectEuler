@@ -8,7 +8,7 @@ ant
 
 
 ## Run It
-./target/champernownesconstant.jar
+java -jar ./target/champernownesconstant.jar
 
 ## Thoughts
 Stupid.  Really dumb solution.

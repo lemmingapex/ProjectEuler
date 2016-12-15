@@ -8,7 +8,7 @@ ant
 
 
 ## Run It
-./target/namesscores.jar p022_names.txt
+java -jar ./target/namesscores.jar p022_names.txt
 
 ## Thoughts
 Noting fancy here.

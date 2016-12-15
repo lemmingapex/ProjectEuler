@@ -8,7 +8,7 @@ ant
 
 
 ## Run It
-./target/truncatableprimes.jar
+java -jar ./target/truncatableprimes.jar
 
 ## Thoughts
 Solved two different ways:

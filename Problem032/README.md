@@ -8,7 +8,7 @@ ant
 
 
 ## Run It
-./target/pandigitalproducts.jar
+java -jar ./target/pandigitalproducts.jar
 
 ## Thoughts
 Observations:  

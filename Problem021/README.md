@@ -8,7 +8,7 @@ ant
 
 
 ## Run It
-./target/amicablenumbers.jar N
+java -jar ./target/amicablenumbers.jar N
 
 N is 10000 in this case.
 

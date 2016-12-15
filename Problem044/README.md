@@ -8,7 +8,7 @@ ant
 
 
 ## Run It
-./target/pentagonnumbers.jar
+java -jar ./target/pentagonnumbers.jar
 
 ## Thoughts
 Nothing fancy here.

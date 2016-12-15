@@ -8,7 +8,7 @@ ant
 
 
 ## Run It
-./target/reciprocalcycles.jar 1000
+java -jar ./target/reciprocalcycles.jar 1000
 
 ## Thoughts
 Multiply the fraction by 10, note the quotient, the remainder, and the position where the remainder occurs in the decimal.  Let the new fraction be the remainder and continue this process until there is no remainder, or the same remainder has been encountered before.

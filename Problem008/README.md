@@ -8,7 +8,7 @@ ant
 
 
 ## Run It
-./target/lps.jar N
+java -jar ./target/lps.jar N
 
 
 ## Run-time

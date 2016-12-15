@@ -8,7 +8,7 @@ ant
 
 
 ## Run It
-./target/nonabundantsums.jar
+java -jar ./target/nonabundantsums.jar
 
 ## Thoughts
 Noting fancy here.

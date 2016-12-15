@@ -8,7 +8,7 @@ ant
 
 
 ## Run It
-./target/coinsums.jar 200
+java -jar ./target/coinsums.jar 200
 
 ## Thoughts
 The first approach uses a subset-sum method, which way overkill for this problem; gets the right answer in time regardless (as well as every answer less than 200)...

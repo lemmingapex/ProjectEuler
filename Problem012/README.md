@@ -8,7 +8,7 @@ ant
 
 
 ## Run It
-./target/hdtn.jar N
+java -jar ./target/hdtn.jar N
 
 Finds the value of the first triangle number to have over N divisors.  N is 500. 
 

@@ -8,7 +8,7 @@ ant
 
 
 ## Run It
-./target/pandigitalmultiples.jar
+java -jar ./target/pandigitalmultiples.jar
 
 ## Thoughts
 Nothing fancy here.

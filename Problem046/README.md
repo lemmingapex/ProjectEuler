@@ -8,7 +8,7 @@ ant
 
 
 ## Run It
-./target/goldbachsotherconjecture.jar
+java -jar ./target/goldbachsotherconjecture.jar
 
 ## Thoughts
 o = p + 2x²

@@ -8,7 +8,7 @@ ant
 
 
 ## Run It
-./target/circularprimes.jar N
+java -jar ./target/circularprimes.jar N
 
 Finds circular primes up to 10^N. N is 6 in this case, so up to 10^6 = 1000000.
 

@@ -8,7 +8,7 @@ ant
 
 
 ## Run It
-./target/doublebasepalindromes.jar N
+java -jar ./target/doublebasepalindromes.jar N
 
 N is 1000000 in this case.
 

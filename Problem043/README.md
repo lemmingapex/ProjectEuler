@@ -8,7 +8,7 @@ ant
 
 
 ## Run It
-./target/substringdivisibility.jar
+java -jar ./target/substringdivisibility.jar
 
 ## Thoughts
 A little recursion, and this problem can be solved very quickly.

@@ -3,14 +3,14 @@ Scott Wiedemann
 
 10/08/2016
 
-# Compile It
+## Compile It
 ant
 
 
-# Run It
-./target/digitfifthpowers.jar 5
+## Run It
+java -jar ./target/digitfifthpowers.jar 5
 
-# Thoughts
+## Thoughts
 
 Let's first consider an upper bound.  If each digit can contribute at most 9^5 values, then how many digits can x numbers consume?  Somewhere around:
 
@@ -55,5 +55,5 @@ So I used a recursive structure to create this sequence up to 6 digits (the uppe
 
 Finally, just iterate over the non-unique permutation sequence and generate a sum of the digits, S.  If a sorted version of s matches the iterator, then S is a sum of fifth powers.
 
-# Run-time
+## Run-time
 Unknown

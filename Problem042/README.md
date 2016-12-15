@@ -8,7 +8,7 @@ ant
 
 
 ## Run It
-./target/codedtrianglenumbers.jar
+java -jar ./target/codedtrianglenumbers.jar
 
 ## Thoughts
 Nothing fancy here.

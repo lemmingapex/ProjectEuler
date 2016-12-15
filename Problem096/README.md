@@ -7,7 +7,7 @@ Scott Wiedemann
 ant
 
 ## Run It
-./target/sudoku.jar ./input/p096_sudoku.txt
+java -jar ./target/sudoku.jar ./input/p096_sudoku.txt
 
 ## Thoughts
 

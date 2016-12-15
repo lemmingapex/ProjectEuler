@@ -8,7 +8,7 @@ ant
 
 
 ## Run It
-./target/spt.jar
+java -jar ./target/spt.jar
 
 
 ## Run-time

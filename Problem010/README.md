@@ -8,7 +8,7 @@ ant
 
 
 ## Run It
-./target/sumprimes.jar N
+java -jar ./target/sumprimes.jar N
 
 Finds the sum of primes up to N. N is 2000000 in this case.
 

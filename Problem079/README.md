@@ -8,7 +8,7 @@ ant
 
 
 ## Run It
-./target/passcodederivation.jar p079_keylog.txt
+java -jar ./target/passcodederivation.jar p079_keylog.txt
 
 
 ## Thoughts

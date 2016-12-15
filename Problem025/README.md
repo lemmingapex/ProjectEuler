@@ -8,7 +8,7 @@ ant
 
 
 ## Run It
-./target/onethousanddigitfibonaccinumber.jar 1000
+java -jar ./target/onethousanddigitfibonaccinumber.jar 1000
 
 ## Thoughts
 BigInteger

@@ -8,7 +8,7 @@ ant
 
 
 ## Run It
-./target/selfpowers.jar N M
+java -jar ./target/selfpowers.jar N M
 
 N terms in the sum. Find the last M digits.
 N is 1000 and M is 10 in this case.

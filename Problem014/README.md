@@ -8,7 +8,7 @@ ant
 
 
 ## Run It
-./target/lcs.jar N
+java -jar ./target/lcs.jar N
 
 Finds the starting value, less than N, in the longest Collatz sequence.  N is 1000000. 
 

@@ -8,7 +8,7 @@ ant
 
 
 ## Run It
-./target/digitfactorials.jar
+java -jar ./target/digitfactorials.jar
 
 ## Thoughts
 Nothing fancy here.  This problem is dumb.  2 numbers, great...

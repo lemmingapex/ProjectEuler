@@ -8,7 +8,7 @@ ant
 
 
 ## Run It
-./target/integerrighttriangles.jar N
+java -jar ./target/integerrighttriangles.jar N
 
 N is 1000 in this case
 

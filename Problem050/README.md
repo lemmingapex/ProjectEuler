@@ -8,7 +8,7 @@ ant
 
 
 ## Run It
-./target/consecutiveprimesum.jar
+java -jar ./target/consecutiveprimesum.jar
 
 ## Thoughts
 Nothing fancy here.

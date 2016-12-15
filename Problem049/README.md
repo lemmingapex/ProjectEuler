@@ -8,7 +8,7 @@ ant
 
 
 ## Run It
-./target/primepermutations.jar
+java -jar ./target/primepermutations.jar
 
 ## Thoughts
 Nothing fancy here.

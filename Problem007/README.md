@@ -8,7 +8,7 @@ ant
 
 
 ## Run It
-./target/primeindex.jar N
+java -jar ./target/primeindex.jar N
 
 
 ## Run-time

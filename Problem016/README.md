@@ -8,7 +8,7 @@ ant
 
 
 ## Run It
-./target/powerdigitsum.jar N
+java -jar ./target/powerdigitsum.jar N
 
 N is 2^N.  1000 in this case.
 

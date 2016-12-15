@@ -8,7 +8,7 @@ ant
 
 
 ## Run It
-./target/digitcancellingfractions.jar 2
+java -jar ./target/digitcancellingfractions.jar 2
 
 ## Thoughts
 2 is the number of digits.  Nothing fancy here.
