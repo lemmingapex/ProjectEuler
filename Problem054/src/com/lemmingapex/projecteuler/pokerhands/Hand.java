@@ -13,15 +13,16 @@ public class Hand {
 			i++;
 		}
 
-		int v = 0;
-		int kp = 13*13*13*13;
+		int kp = 13*13*13*13*13;
+		int v = (kp*getRank().value);
+		kp /= 13;
 		for(i=4; i>0; i--) {
 			for(int j=12; j>=0; j--) {
 				int valueCount = valueHistogram[j];
 				if(valueCount == i) {
 					for(int k=0; k<i; k++) {
 						v += (j+1)*kp;
-						kp/=13;
+						kp /= 13;
 					}
 				}
 			}

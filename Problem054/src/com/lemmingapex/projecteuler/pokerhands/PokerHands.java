@@ -55,20 +55,13 @@ public class PokerHands {
 					String card = cards[i];
 					player2Hand.cards.add(Card.valueOf(card));
 				}
-				if(player1Hand.getRank().value > player2Hand.getRank().value) {
+				if(player1Hand.getHandValue() > player2Hand.getHandValue()) {
 					numberOfhandsPlayerOneWins++;
 					//System.out.println("player 1 wins!");
-				} else if(player1Hand.getRank().value < player2Hand.getRank().value) {
+				} else if(player1Hand.getHandValue() < player2Hand.getHandValue()) {
 					//System.out.println("player 2 wins!");
 				} else {
-					if(player1Hand.getHandValue() > player2Hand.getHandValue()) {
-						numberOfhandsPlayerOneWins++;
-						//System.out.println("player 1 wins!");
-					} else if(player1Hand.getHandValue() < player2Hand.getHandValue()) {
-						//System.out.println("player 2 wins!");
-					} else {
-						//System.out.println("tie!");
-					}
+					//System.out.println("tie!");
 				}
 
 				line = br.readLine();

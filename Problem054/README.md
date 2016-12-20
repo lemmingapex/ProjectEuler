@@ -11,7 +11,7 @@ ant
 java -jar ./target/pokerhands.jar p054_poker.txt
 
 ## Thoughts
-Nothing fancy here.  Classify hands and then give a numeric value for the hand.
+Nothing fancy here.  Classify hands and give a numeric value for the hand in using a base 13 shift.
 
 ## Run-time
 Unknown.
