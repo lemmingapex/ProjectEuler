@@ -38,7 +38,7 @@ public class PokerHands {
 			System.exit(1);
 		}
 
-		int handPlayerOneWins = 0;
+		int numberOfhandsPlayerOneWins = 0;
 		BufferedReader br = null;
 		try {
 			br = new BufferedReader(new FileReader(inputFile));
@@ -50,33 +50,26 @@ public class PokerHands {
 					String card = cards[i];
 					player1Hand.cards.add(Card.valueOf(card));
 				}
-				HandRank player1HandRank = HandRank.getRank(player1Hand);
-				//System.out.println("player 1 " + player1Hand + " " + player1HandRank.name);
 				Hand player2Hand = new Hand();
 				for(int i=5; i<10; i++) {
 					String card = cards[i];
 					player2Hand.cards.add(Card.valueOf(card));
 				}
-				HandRank player2HandRank = HandRank.getRank(player2Hand);
-				//System.out.println("player 2 " + player2Hand + " " + player2HandRank.name);
-				if(player1HandRank.value > player2HandRank.value) {
+				if(player1Hand.getRank().value > player2Hand.getRank().value) {
+					numberOfhandsPlayerOneWins++;
 					//System.out.println("player 1 wins!");
-					handPlayerOneWins++;
-				} else if(player1HandRank.value < player2HandRank.value) {
+				} else if(player1Hand.getRank().value < player2Hand.getRank().value) {
 					//System.out.println("player 2 wins!");
 				} else {
-					int player1HandValue = player1HandRank.getHandValue(player1Hand);
-					int player2HandValue = player2HandRank.getHandValue(player2Hand);
-					if(player1HandValue > player2HandValue) {
+					if(player1Hand.getHandValue() > player2Hand.getHandValue()) {
+						numberOfhandsPlayerOneWins++;
 						//System.out.println("player 1 wins!");
-						handPlayerOneWins++;
-					} else if(player1HandValue < player2HandValue) {
+					} else if(player1Hand.getHandValue() < player2Hand.getHandValue()) {
 						//System.out.println("player 2 wins!");
 					} else {
 						//System.out.println("tie!");
 					}
 				}
-				//System.out.println("");
 
 				line = br.readLine();
 			}
@@ -93,6 +86,6 @@ public class PokerHands {
 			}
 		}
 
-		System.out.println(handPlayerOneWins);
+		System.out.println(numberOfhandsPlayerOneWins);
 	}
 }
