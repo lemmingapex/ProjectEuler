@@ -4,7 +4,7 @@ Scott Wiedemann
 05/14/2013
 
 ## Compile It
-cd ./src
+cd ./src  
 make
 
 
