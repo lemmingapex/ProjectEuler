@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project basedir="." default="jar" name="Problem56">
+    <property name="jarname" value="powerfuldigitsum"/>
+    <property name="target" value="./target/${jarname}.jar"/>
+    <property name="debuglevel" value="source,lines,vars"/>
+    <path id="classpath">
+        <pathelement location="bin"/>
+    </path>
+    <target name="init">
+        <mkdir dir="bin"/>
+        <copy includeemptydirs="false" todir="bin">
+            <fileset dir="src">
+                <exclude name="**/*.java"/>
+            </fileset>
+        </copy>
+    </target>
+    <target name="clean">
+        <delete dir="bin"/>
+        <delete dir="target"/>
+    </target>
+    <target depends="init" name="build">
+        <echo message="${ant.project.name}: ${ant.file}"/>
+        <javac debug="true" debuglevel="${debuglevel}" destdir="bin">
+            <src path="src"/>
+            <classpath refid="classpath"/>
+        </javac>
+    </target>
+    <target depends="build" name="jar">
+        <jar destfile="${target}" filesetmanifest="mergewithoutmain">
+            <manifest>
+                <attribute name="Main-Class" value="com.lemmingapex.projecteuler.powerfuldigitsum.PowerfulDigitSum"/>
+                <attribute name="Class-Path" value="."/>
+            </manifest>
+            <fileset dir="./bin"/>
+        </jar>
+        <chmod file="${target}" perm="755"/>
+    </target>
+</project>
