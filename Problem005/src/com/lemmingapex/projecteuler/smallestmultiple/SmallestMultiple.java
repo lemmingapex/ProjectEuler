@@ -66,11 +66,11 @@ public class SmallestMultiple {
 
 	public static void main(String[] args) {
 		if (args.length != 1) {
-	        System.err.println("Incorrect number of arguments.");
-	        System.err.println("Usage: ./smallestmultiple.jar N");
-	        System.exit(1);
+			System.err.println("Incorrect number of arguments.");
+			System.err.println("Usage: ./smallestmultiple.jar N");
+			System.exit(1);
 		}
-        Integer N = Integer.parseInt(args[0]);
+		Integer N = Integer.parseInt(args[0]);
 		System.out.println(SmallestMultiple.getSmallestMultiple(N));
 	}
 }

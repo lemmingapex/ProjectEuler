@@ -17,8 +17,6 @@ public class ConsecutivePrimeSum {
 	private boolean isPrime(long p) {
 		if(p == 1) {
 			return false;
-		} else if(p ==2) {
-			return true;
 		}
 		int upperBound = (int)Math.sqrt(p);
 		for(int i=2; i<=upperBound; i++) {
