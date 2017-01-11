@@ -10,7 +10,7 @@ ant
 java -jar ./target/cyclicalfiguratenumbers.jar
 
 ## Thoughts
-
+TODO
 
 ## Run-time
 Unknown.
