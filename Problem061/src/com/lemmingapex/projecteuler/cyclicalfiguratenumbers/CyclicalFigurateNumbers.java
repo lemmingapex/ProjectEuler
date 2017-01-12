@@ -18,23 +18,9 @@ import java.util.Stack;
  */
 public class CyclicalFigurateNumbers {
 
+	// see https://en.wikipedia.org/wiki/Polygonal_number
 	public int generateFigurateNumber(int n, int type) {
-		switch(type) {
-			case 3:
-				return n*(n+1)/2;
-			case 4:
-				return n*n;
-			case 5:
-				return n*(3*n-1)/2;
-			case 6:
-				return n*(2*n-1);
-			case 7:
-				return n*(5*n-3)/2;
-			case 8:
-				return n*(3*n-2);
-			default:
-				return -1;
-		}
+		return ((type-2)*n*(n-1)/2)+n;
 	}
 
 	public List<FigurateNumber> generateFigurateNumbers() {
