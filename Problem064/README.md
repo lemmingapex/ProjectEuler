@@ -7,7 +7,7 @@ Scott Wiedemann
 ant
 
 ## Run It
-java -jar ./target/oddperiodsquareroots.jar
+java -jar ./target/oddperiodsquareroots.jar 10000
 
 ## Thoughts
 https://en.wikipedia.org/wiki/Methods_of_computing_square_roots#Continued_fraction_expansion
