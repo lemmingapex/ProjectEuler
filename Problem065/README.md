@@ -7,7 +7,7 @@ Scott Wiedemann
 ant
 
 ## Run It
-java -jar ./target/convergentsofe.jar
+java -jar ./target/convergentsofe.jar 100
 
 ## Thoughts
 BigInteger.
