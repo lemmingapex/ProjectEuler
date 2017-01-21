@@ -21,6 +21,16 @@ The solution involves the structure of the group of units of a general ring of a
 x² - Dy² = 1  
 (x + y√D)(x - y√D) = 1  
 
+Another way to look at it:
+
+x² - Dy² = 1  
+x² = 1 + Dy²  
+x²/y² = 1/y² + D  
+(x/y)² = 1/y² + D  
+x/y = √(1/y² + D)  
+
+because the 1/y² term is small, x/y should be a close approximation to √D.  
+
 The algorithm looks at the numerator and denominator of the convergents of the continued fraction of √D.  The numerator and denominator of one of the convergents will give x and y respectively in the equation x² - Dy² = 1.  This has to do with the structure of the group which is beyond me.
 
 ## Run-time
