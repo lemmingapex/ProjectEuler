@@ -1,4 +1,4 @@
-package com.lemmingapex.projecteuler.digitcancellingfractions;
+package com.lemmingapex.projecteuler.countingfractionsinarange;
 
 public class LFraction {
 
