@@ -1,6 +1,6 @@
 package com.lemmingapex.projecteuler.digitfactorialchains;
 
-import java.util.HashMap;
+import java.util.TreeMap;
 import java.util.LinkedHashSet;
 import java.util.Map;
 import java.util.Set;
@@ -34,11 +34,11 @@ public class DigitFactorialChains {
 		return factorialOfDigits;
 	}
 
-	public long solve(long N) {
+	public long solve(long N, int M) {
 		final int searchSequenceLength = 60;
 
 		long count = 0;
-		Map<Long, Long> sequenceLengthCache = new HashMap<Long, Long>();
+		Map<Long, Long> sequenceLengthCache = new TreeMap<Long, Long>();
 
 		for(long i=3; i <= N; i++) {
 			long n = i;
@@ -57,45 +57,36 @@ public class DigitFactorialChains {
 				currentLength++;
 			} while(!chain.contains(n));
 
-			Long cycleLength = 0L;
+			// we have detected a new cycle that we haven't seen before.  Fill the cache with the new cycle entries.
 			if(n_seq_length == null) {
+				currentLength = 0;
 				Iterator<Long> chainIterator = chain.iterator();
 				while(chainIterator.hasNext()) {
 					Long e = chainIterator.next();
 					if(e.equals(n)) {
-						cycleLength = chain.size() - cycleLength;
-						//System.out.println("cycleLength " + cycleLength);
-						sequenceLengthCache.put(e, cycleLength);
+						n_seq_length = (long)(chain.size() - currentLength);
+						sequenceLengthCache.put(e, n_seq_length);
 						while(chainIterator.hasNext()) {
 							e = chainIterator.next();
-							sequenceLengthCache.put(e, cycleLength);
+							sequenceLengthCache.put(e, n_seq_length);
 						}
 						break;
 					}
-					cycleLength++;
+					currentLength++;
 				}
 			}
-
-			if(n_seq_length == null) {
-				n_seq_length = chain.size() - cycleLength;
-				currentLength = 0;
-			}
-
-			long l = currentLength + n_seq_length;
-			sequenceLengthCache.put(i, l+1L);
-			for(Long c : chain) {
-				if(l == n_seq_length) {
-					break;
-				}
-				//System.out.println("(c, l) (" + c + ", " + l + ")");
-				sequenceLengthCache.put(c, l);
-				l--;
+			// add entries to the cache that are in the chain. (If it's in the chain, then it is not in the cache.)
+			Iterator<Long> chainIterator = chain.iterator();
+			for(long j=currentLength + n_seq_length; j>n_seq_length; j--) {
+				Long c = chainIterator.next();
+				sequenceLengthCache.put(c, j);
 			}
 		}
+		// count the cache entires that meet the criteria
 		for(Long key : sequenceLengthCache.keySet()) {
 			Long value = sequenceLengthCache.get(key);
-			if(value == 60 && key <= N) {
-				System.out.println("(key, value) (" + key + ", " + value + ")");
+			if(value == M && key <= N) {
+				//System.out.println("(key, value) (" + key + ", " + value + ")");
 				count++;
 			}
 		}
@@ -103,13 +94,14 @@ public class DigitFactorialChains {
 	}
 
 	public static void main(String[] args) {
-		if (args.length != 1) {
+		if (args.length != 2) {
 			System.err.println("Incorrect number of arguments.");
-			System.err.println("Usage: ./digitfactorialchains.jar N");
+			System.err.println("Usage: ./digitfactorialchains.jar N M");
 			System.exit(1);
 		}
 		Long N = Long.parseLong(args[0]);
+		Integer M = Integer.parseInt(args[1]);
 
-		System.out.println(new DigitFactorialChains().solve(N));
+		System.out.println(new DigitFactorialChains().solve(N, M));
 	}
 }

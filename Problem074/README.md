@@ -8,9 +8,9 @@ ant
 
 
 ## Run It
-java -jar ./target/digitfactorialchains.jar N
+java -jar ./target/digitfactorialchains.jar N M
 
-N is 1000000.
+N is 1000000, M is 60.
 
 ## Thoughts
 Simple cache to store lengths already calculated.
