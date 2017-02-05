@@ -41,15 +41,18 @@ You are basically building a tree where the sums are in decreasing order of term
 
 Idea here is to build a table with the number of ways to partition a certain sum.  Additional rows and columns in the table can be calculated from prior rows and columns.
 
-| # of remaining 1s\leading number | 1   | 2   |
-| -------------------------------: | --- | --- |
-| 0                                | 1+0 | 2+0 |
-| 1                                | 1+1 | 2+1  |
-| 2                                | 1+1+1  | 2+1+1  |
+| # of remaining 1s\leading number | 1           | 2           | 3           | 4           | 5           | 6           | 7           |
+| -------------------------------: | ----------- | ----------- | ----------- | ----------- | ----------- | ----------- | ----------- |
+|                                0 | 1+0         | 2+0         | 3+0         | 4+0         | 5+0         | 6+0         | 7+0         |
+|                                1 | 1+1         | 2+1         | 3+1         | 4+1         | 5+1         | 6+1         | 7+1         |
+|                                2 | 1+1+1       | 2+1+1       | 3+1+1       | 4+1+1       | 5+1+1       | 6+1+1       | 7+1+1       |
+|                                3 | 1+1+1+1     | 2+1+1+1     | 3+1+1+1     | 4+1+1+1     | 5+1+1+1     | 6+1+1+1     | 7+1+1+1     |
+|                                4 | 1+1+1+1+1   | 2+1+1+1+1   | 3+1+1+1+1   | 4+1+1+1+1   | 5+1+1+1+1   | 6+1+1+1+1   | 7+1+1+1+1   |
+|                                5 | 1+1+1+1+1+1 | 2+1+1+1+1+1 | 3+1+1+1+1+1 | 4+1+1+1+1+1 | 5+1+1+1+1+1 | 6+1+1+1+1+1 | 7+1+1+1+1+1 |
 
-initialize the first row to 1, then remaining rows can be calculated using prior entries.
+Notice that diagonals from lower left to upper right add the the same sum.
 
-Count for each sum can then build using prior rows and columns:
+Count for each sum can be calculated using prior rows and columns.  Initialize the first row to 1.
 
 ## Run-time
 Unknown.
