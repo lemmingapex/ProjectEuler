@@ -41,18 +41,30 @@ You are basically building a tree where the sums are in decreasing order of term
 
 Idea here is to build a table with the number of ways to partition a certain sum.  Additional rows and columns in the table can be calculated from prior rows and columns.
 
-| # of remaining 1s\leading number | 1           | 2           | 3           | 4           | 5           | 6           | 7           |
-| -------------------------------: | ----------- | ----------- | ----------- | ----------- | ----------- | ----------- | ----------- |
-|                                0 | 1+0         | 2+0         | 3+0         | 4+0         | 5+0         | 6+0         | 7+0         |
-|                                1 | 1+1         | 2+1         | 3+1         | 4+1         | 5+1         | 6+1         | 7+1         |
-|                                2 | 1+1+1       | 2+1+1       | 3+1+1       | 4+1+1       | 5+1+1       | 6+1+1       | 7+1+1       |
-|                                3 | 1+1+1+1     | 2+1+1+1     | 3+1+1+1     | 4+1+1+1     | 5+1+1+1     | 6+1+1+1     | 7+1+1+1     |
-|                                4 | 1+1+1+1+1   | 2+1+1+1+1   | 3+1+1+1+1   | 4+1+1+1+1   | 5+1+1+1+1   | 6+1+1+1+1   | 7+1+1+1+1   |
-|                                5 | 1+1+1+1+1+1 | 2+1+1+1+1+1 | 3+1+1+1+1+1 | 4+1+1+1+1+1 | 5+1+1+1+1+1 | 6+1+1+1+1+1 | 7+1+1+1+1+1 |
+| # of remaining 1s\leading number | 1           | 2           | 3           | 4           | 5           | 6           |
+| -------------------------------: | ----------- | ----------- | ----------- | ----------- | ----------- | ----------- |
+|                                0 | 1+0         | 2+0         | 3+0         | 4+0         | 5+0         | 6+0         |
+|                                1 | 1+1         | 2+1         | 3+1         | 4+1         | 5+1         | 6+1         |
+|                                2 | 1+1+1       | 2+1+1       | 3+1+1       | 4+1+1       | 5+1+1       | 6+1+1       |
+|                                3 | 1+1+1+1     | 2+1+1+1     | 3+1+1+1     | 4+1+1+1     | 5+1+1+1     | 6+1+1+1     |
+|                                4 | 1+1+1+1+1   | 2+1+1+1+1   | 3+1+1+1+1   | 4+1+1+1+1   | 5+1+1+1+1   | 6+1+1+1+1   |
+|                                5 | 1+1+1+1+1+1 | 2+1+1+1+1+1 | 3+1+1+1+1+1 | 4+1+1+1+1+1 | 5+1+1+1+1+1 | 6+1+1+1+1+1 |
 
 Notice that diagonals from lower left to upper right add the the same sum.
 
-Count for each sum can be calculated using prior rows and columns.  Initialize the first row to 1.
+The count for each sum can be calculated using prior rows and columns.  Initialize the first row to 1.
+
+| # of remaining 1s\leading number | 1 | 2 | 3 | 4 | 5  | 6  | 7  |
+| -------------------------------: | - | - | - | - | -- | -- | -- |
+|                                0 | 0 | 1 | 1 | 1 | 1  | 1  | 1  |
+|                                1 | 0 | 1 | 1 | 1 | 1  | 1  | 1  |
+|                                2 | 0 | 2 | 2 | 2 | 2  | 2  | 2  |
+|                                3 | 0 | 2 | 3 | 3 | 3  | 3  | 3  |
+|                                4 | 0 | 3 | 4 | 5 | 5  | 5  | 5  |
+|                                5 | 0 | 3 | 5 | 6 | 7  | 7  | 7  |
+|                                6 | 0 | 4 | 7 | 9 | 10 | 11 | 11 |
+
+Then the solution for n is the sum of the nth diagonal.
 
 ## Run-time
 Unknown.
