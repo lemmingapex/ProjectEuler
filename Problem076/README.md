@@ -64,8 +64,11 @@ The count for each sum can be calculated using prior rows and columns.  Initiali
 |                                5 |**0**|  3  |  5  |  6  |  7   |  7   | 7  |
 |                                6 |  0  |  4  |  7  |  9  |  10  |**11**| 11 |
 
-Then the solution for n is the sum of the nth diagonal plus one.  
+The value for the cell at (6,6) would be sum of the diagonal starting at (5,1) plus one.
 ex: 11 = 1+0+3+3+2+1+1
+
+Then the solution for n is the sum of the nth diagonal.  
+
 
 ## Run-time
 Unknown.
