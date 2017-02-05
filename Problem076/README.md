@@ -55,7 +55,7 @@ Notice that diagonals from lower left to upper right add the the same sum.
 The count for each sum can be calculated using prior rows and columns.  Initialize the first row to 1.
 
 | # of remaining 1s\leading number | 1 | 2 | 3 | 4 | 5  | 6  | 7  |
-| -------------------------------: | - | - | - | - | -- | -- | -- |
+| -------------------------------: |---|---|---|---|----|----|----|
 |                                0 | 0 | 1 | 1 | 1 | 1  | 1  | 1  |
 |                                1 | 0 | 1 | 1 | 1 | 1  | 1  | 1  |
 |                                2 | 0 | 2 | 2 | 2 | 2  | 2  | 2  |
