@@ -7,7 +7,7 @@ Scott Wiedemann
 ant
 
 ## Run It
-java -jar ./target/pathsumtwoways.jar N
+java -jar ./target/pathsumtwoways.jar p081_matrix.txt
 
 ## Thoughts
 Store the minimum cumulative sum as you move right and down in the matrix.
