@@ -1,4 +1,4 @@
-package com.lemmingapex.projecteuler.pathsumfourways;
+package com.lemmingapex.projecteuler.pathsumthreeways;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -7,19 +7,19 @@ import java.io.IOException;
 
 /**
  * 02/12/2017
- * PathSumFourWays.java
- * Path sum: four ways
+ * PathSumThreeWays.java
+ * Path sum: three ways
  *
  * @author Scott Wiedemann
  *
  */
-public class PathSumFourWays {
+public class PathSumThreeWays {
 
 	final int n;
 	final int[][] matrix;
 	final Element[][] graph;
 
-	public PathSumFourWays(int[][] matrix) {
+	public PathSumThreeWays(int[][] matrix) {
 		this.matrix = matrix;
 		this.n = matrix.length;
 		this.graph = new Element[this.n][this.n];
@@ -40,12 +40,10 @@ public class PathSumFourWays {
 						e.neighbors.add(graph[ni][nj]);
 					}
 				}
-				for(int dj=-1; dj<=1; dj+=2) {
-					int ni = i;
-					int nj = j + dj;
-					if(ni >= 0 && nj >= 0 && ni < this.n && nj < this.n) {
-						e.neighbors.add(graph[ni][nj]);
-					}
+				int ni = i;
+				int nj = j + 1;
+				if(ni >= 0 && nj >= 0 && ni < this.n && nj < this.n) {
+					e.neighbors.add(graph[ni][nj]);
 				}
 			}
 		}
@@ -67,31 +65,52 @@ public class PathSumFourWays {
 	}
 
 	public int solve() {
-		Element root = graph[0][0];
-		root.distance = root.value;
+		int minDistanceRoute = Integer.MAX_VALUE;
 
-		// Dijkstra's
-		Element minDistanceElement = getUnvisitedMinDistanceElement();
-		while(minDistanceElement != null) {
-			for(Element neighbor : minDistanceElement.neighbors) {
-				final int distance =  minDistanceElement.distance + neighbor.value;
-				if(distance < neighbor.distance) {
-					neighbor.distance = distance;
-					neighbor.predecessor = minDistanceElement;
+		for(int r=0; r<this.n; r++) {
+			Element root = graph[r][0];
+			root.distance = root.value;
+
+			// Dijkstra's
+			Element minDistanceElement = getUnvisitedMinDistanceElement();
+			while(minDistanceElement != null) {
+				for(Element neighbor : minDistanceElement.neighbors) {
+					final int distance =  minDistanceElement.distance + neighbor.value;
+					if(distance < neighbor.distance) {
+						neighbor.distance = distance;
+						neighbor.predecessor = minDistanceElement;
+					}
+				}
+
+				minDistanceElement.visited = true;
+				minDistanceElement = getUnvisitedMinDistanceElement();
+			}
+
+			for(int i=0; i<this.n; i++) {
+				int d = graph[i][this.n-1].distance;
+				if(d < minDistanceRoute) {
+					minDistanceRoute = d;
 				}
 			}
 
-			minDistanceElement.visited = true;
-			minDistanceElement = getUnvisitedMinDistanceElement();
+			// reset graph
+			for(int i=0; i < this.n; i++) {
+				for(int j=0; j < this.n; j++) {
+					Element e = graph[i][j];
+					e.visited = false;
+					e.distance = Integer.MAX_VALUE;
+					e.predecessor = null;
+				}
+			}
 		}
 
-		return graph[this.n-1][this.n-1].distance;
+		return minDistanceRoute;
 	}
 
 	public static void main(String[] args) {
 		if (args.length != 1) {
 			System.err.println("Incorrect number of arguments.");
-			System.err.println("Usage: ./pathsumfourways.jar p083_matrix.txt");
+			System.err.println("Usage: ./pathsumthreeways.jar p082_matrix.txt");
 			System.exit(1);
 		}
 
@@ -130,7 +149,7 @@ public class PathSumFourWays {
 				i++;
 			}
 
-			System.out.println(new PathSumFourWays(matrix).solve());
+			System.out.println(new PathSumThreeWays(matrix).solve());
 		} catch (Exception e) {
 			System.err.println("Problem reading file: " + inputFile.getAbsolutePath() + ".");
 			e.printStackTrace();
