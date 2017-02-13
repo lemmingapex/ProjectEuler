@@ -53,7 +53,7 @@ public class PathSumTwoWays {
 	public static void main(String[] args) {
 		if (args.length != 1) {
 			System.err.println("Incorrect number of arguments.");
-			System.err.println("Usage: ./anagramicsquares.jar p081_matrix.txt");
+			System.err.println("Usage: ./pathsumtwoways.jar p081_matrix.txt");
 			System.exit(1);
 		}
 
