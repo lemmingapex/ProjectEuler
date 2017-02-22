@@ -12,7 +12,7 @@ java -jar ./target/monopolyodds.jar N
 N is 4 in this case.
 
 ## Thoughts
-I modeled the board and basic game mechanics utilizing the computer's PRNG.  Let a player take 10000 rolls, and keep track of which squares they end on, and then normalize the distribution.  I am not sure how a rigorous statistically analysis would be preformed.
+I modeled the board and basic game mechanics utilizing the computer's PRNG.  Simulate 10000000 rolls of one player, and keep track of which squares they end on, and then normalize the distribution.  Tweaked the model a bit to get it accurate to 4 decimal places.  Interesting to see what happens at other values of N as well.  I am not sure how a very rigorous statistically analysis would be preformed.
 
 ## Run-time
 Unknown.
