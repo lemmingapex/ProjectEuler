@@ -126,29 +126,30 @@ So again there are 15 ways to form rectangles, or n(n+1)/2 ways.  But you can no
 Repeating this process with rectangles of height three gives 1*15 rectangles.
 
 The total number of rectangles is therefore:
-
+```
 R = 3*15 + 2*15 + 1*15
 R = (3 + 2 + 1) * 15
 R = m(m+1)/2 * n(n+1)/2
 R = m*n*(m+1)(n+1)/4
-
+```
 So you could now search through m and n until you found values of R close to 2000000.  As to minimize the error, ϵ = R-C.
 
 However, you can easily rearrange the equation; explicitly solving for m.
-
+```
 m = √(4*C/(n²+n) + 1/4) - 1/2
-
+```
 The negative root can be disregarded.  For general integer values of C, m will likely not take an integer value.  A close solution will take one of the integers bordering m however.  We can then redefine the optimization problem as the error in the decimal part of m:
 ϵ = m%1 or ϵ = 1 - m%1.  This formulation runs much faster, because the naive search space need only consider n, instead of m and n.
 
 Consider an upperbound on n:
+```
 R = m*n*(m+1)(n+1)/4
-
+```
 n is large when m is small.  m is bounded below by 1, so the largest n is:
-
+```
 R = n*(n+1)/2
 n = √(2*C + 1/4) - 1/2
-
+```
 The negative root can be disregarded.
 
 The search can sped up by starting at the n=upperbound and breaking when m>n. (Recall the redundancy stated above. m<=n.)
