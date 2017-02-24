@@ -19,24 +19,25 @@ public class CountingRectangles {
 		int nLowerBound = 1;
 		int nUpperBound = (int)(Math.sqrt((2.0*(double)C) + 0.25) - 0.5);
 
-		for(int n=nLowerBound; n<=nUpperBound; n++) {
+		for(int n=nUpperBound; n>=nLowerBound; n--) {
 			double mDouble = Math.sqrt((((4.0*(double)C))/(n*n+n)) + 0.25) - 0.5;
-			if(mDouble <= n) {
-				int mInt = (int)mDouble;
-				//System.out.println("m x n : " + mInt + " x " + n);
-				double mError = mDouble - mInt;
-				if(mError < smallestMError) {
-					smallestMError = mError;
-					mWithSmallestError = mInt;
-					nWithM = n;
-				}
+			if(mDouble > n) {
+				break;
+			}
+			int mInt = (int)mDouble;
+			//System.out.println("m x n : " + mInt + " x " + n);
+			double mError = mDouble - mInt;
+			if(mError < smallestMError) {
+				smallestMError = mError;
+				mWithSmallestError = mInt;
+				nWithM = n;
 			}
 		}
 
 		int area = mWithSmallestError*nWithM;
-		//System.out.println("mWithSmallestError x nWithM = area " + mWithSmallestError + " x " + nWithM + " = " + area);
-		//int closeC = mWithSmallestError*(1+mWithSmallestError)*nWithM*(1+nWithM)/4;
-		//System.out.println("closeC " + closeC);
+		// System.out.println("solution: m x n = area = " + mWithSmallestError + " x " + nWithM + " = " + area);
+		// int closeC = mWithSmallestError*(1+mWithSmallestError)*nWithM*(1+nWithM)/4;
+		// System.out.println("C = " + closeC);
 
 		return area;
 	}
@@ -44,7 +45,7 @@ public class CountingRectangles {
 	public static void main(String[] args) {
 		if (args.length != 1) {
 			System.err.println("Incorrect number of arguments.");
-			System.err.println("Usage: ./countingrectangles.jar N");
+			System.err.println("Usage: ./countingrectangles.jar C");
 			System.exit(1);
 		}
 		final int C = Integer.parseInt(args[0]);
