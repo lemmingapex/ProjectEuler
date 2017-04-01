@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<project basedir="." default="jar" name="Problem87">
-    <property name="jarname" value="primepowertriples"/>
+<project basedir="." default="jar" name="Problem88">
+    <property name="jarname" value="productsumnumbers"/>
     <property name="target" value="./target/${jarname}.jar"/>
     <property name="debuglevel" value="source,lines,vars"/>
     <path id="classpath">
@@ -28,7 +28,7 @@
     <target depends="build" name="jar">
         <jar destfile="${target}" filesetmanifest="mergewithoutmain">
             <manifest>
-                <attribute name="Main-Class" value="com.lemmingapex.projecteuler.primepowertriples.PrimePowerTriples"/>
+                <attribute name="Main-Class" value="com.lemmingapex.projecteuler.productsumnumbers.ProductSumNumbers"/>
                 <attribute name="Class-Path" value="."/>
             </manifest>
             <fileset dir="./bin"/>
