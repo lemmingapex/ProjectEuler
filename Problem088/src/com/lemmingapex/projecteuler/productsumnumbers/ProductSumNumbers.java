@@ -1,10 +1,13 @@
 package com.lemmingapex.projecteuler.productsumnumbers;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
- * 03/13/2017
+ * 03/31/2017
  * ProductSumNumbers.java
  * Product-sum numbers
  *
@@ -13,7 +16,11 @@ import java.util.List;
  */
 public class ProductSumNumbers {
 
-
+	/**
+	 *
+	 * Important! This methods returns the list in increasing sorted order!
+	 *
+	 */
 	List<Integer> properFactors(int n) {
 		List<Integer> factors = new ArrayList<>();
 
@@ -30,20 +37,71 @@ public class ProductSumNumbers {
 		return factors;
 	}
 
+	private void populateUniqueFactorizations(List<Integer> factors, Set<List<Integer>> uniqueFactorizations) {
+		int factorsSize = factors.size();
+		uniqueFactorizations.add(factors);
+		if(factorsSize != 1) {
+			for(int i=0; i<factorsSize-1; i++) {
+				Integer iFactor = factors.get(i);
+				for(int j=i+1; j<factorsSize; j++) {
+					// Important! We must be careful to populate the newFactors list in increasing sorted order!  It will allow us to compare lists in the set without further sorting
+					List<Integer> newFactors = new ArrayList<>(factorsSize - 1);
+					newFactors.addAll(factors);
+					newFactors.remove(i);
+					Integer jFactor = factors.get(j);
+					newFactors.set(j-1, iFactor*jFactor);
+					Collections.sort(newFactors);
+					populateUniqueFactorizations(newFactors, uniqueFactorizations);
+				}
+			}
+		}
+		return;
+	}
+
 	public int solve(int K) {
+		Set<Integer> solution = new HashSet<>();
 		for(int k=2; k<=K; k++) {
+			System.out.println("k: " + k);
 			// N >= k
 			int nLowerBound = k;
-			for(int n=nLowerBound; n<10000; n++) {
-				System.out.println("n: " + n);
+			boolean foundSolution = false;
+			for(int n=nLowerBound; foundSolution == false; n++) {
 				List<Integer> properFactors = properFactors(n);
-				for(Integer pF : properFactors) {
-					System.out.println(pF);
+				Set<List<Integer>> uniqueFactorizations = new HashSet<>();
+				populateUniqueFactorizations(properFactors, uniqueFactorizations);
+				for(List<Integer> factorization : uniqueFactorizations) {
+					int factorizationSize = factorization.size();
+					// otherwise there is no way this factorization can contain k terms
+					if(factorizationSize <= k) {
+						// add the number of ones to the factorization to make it the correct size
+						int factorizationSum = k-factorizationSize;
+						for(Integer f : factorization) {
+							 factorizationSum += f;
+						}
+						if(factorizationSum == n) {
+							System.out.print(factorizationSum + " = ");
+							for(Integer f : factorization) {
+								System.out.print(f + " ");
+							}
+							// for(int i=0; i<k-factorizationSize; i++) {
+							// 	System.out.print("1 ");
+							// }
+							System.out.println("");
+							foundSolution = true;
+							solution.add(n);
+							break;
+						}
+					}
 				}
 			}
 		}
 
-		return 0;
+		int solutionSum = 0;
+		for(Integer i : solution) {
+			solutionSum += i;
+		}
+
+		return solutionSum;
 	}
 
 	public static void main(String[] args) {
