@@ -2,8 +2,10 @@ package com.lemmingapex.projecteuler.productsumnumbers;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 /**
@@ -16,12 +18,14 @@ import java.util.Set;
  */
 public class ProductSumNumbers {
 
+	private Map<Integer, Set<List<Integer>>> uniqueFactorizationCache = new HashMap<>();
+
 	/**
 	 *
 	 * Important! This methods returns the list in increasing sorted order!
 	 *
 	 */
-	List<Integer> properFactors(int n) {
+	private List<Integer> properFactors(int n) {
 		List<Integer> factors = new ArrayList<>();
 
 		for (int i = 2; i <= n / i; i++) {
@@ -58,17 +62,30 @@ public class ProductSumNumbers {
 		return;
 	}
 
+	private Set<List<Integer>> getUniqueFactorization(int n) {
+		Set<List<Integer>> uniqueFactorizations = uniqueFactorizationCache.get(n);
+		if(uniqueFactorizations == null) {
+			System.out.println("calculating the factorization of: " + n);
+			List<Integer> properFactors = properFactors(n);
+			uniqueFactorizations = new HashSet<>();
+			populateUniqueFactorizations(properFactors, uniqueFactorizations);
+			uniqueFactorizationCache.put(n, uniqueFactorizations);
+		}
+		return uniqueFactorizations;
+	}
+
 	public int solve(int K) {
+		// reset cache
+		this.uniqueFactorizationCache = new HashMap<>();
+
 		Set<Integer> solution = new HashSet<>();
 		for(int k=2; k<=K; k++) {
 			System.out.println("k: " + k);
 			// N >= k
 			int nLowerBound = k;
 			boolean foundSolution = false;
-			for(int n=nLowerBound; foundSolution == false; n++) {
-				List<Integer> properFactors = properFactors(n);
-				Set<List<Integer>> uniqueFactorizations = new HashSet<>();
-				populateUniqueFactorizations(properFactors, uniqueFactorizations);
+			for(int n=nLowerBound; !foundSolution; n++) {
+				Set<List<Integer>> uniqueFactorizations = getUniqueFactorization(n);
 				for(List<Integer> factorization : uniqueFactorizations) {
 					int factorizationSize = factorization.size();
 					// otherwise there is no way this factorization can contain k terms
