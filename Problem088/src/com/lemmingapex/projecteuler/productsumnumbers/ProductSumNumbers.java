@@ -55,7 +55,10 @@ public class ProductSumNumbers {
 					Integer jFactor = factors.get(j);
 					newFactors.set(j-1, iFactor*jFactor);
 					Collections.sort(newFactors);
-					populateUniqueFactorizations(newFactors, uniqueFactorizations);
+					// don't look at set's you have already looked at!
+					if(!uniqueFactorizations.contains(newFactors)) {
+						populateUniqueFactorizations(newFactors, uniqueFactorizations);
+					}
 				}
 			}
 		}
@@ -65,7 +68,6 @@ public class ProductSumNumbers {
 	private Set<List<Integer>> getUniqueFactorization(int n) {
 		Set<List<Integer>> uniqueFactorizations = uniqueFactorizationCache.get(n);
 		if(uniqueFactorizations == null) {
-			System.out.println("calculating the factorization of: " + n);
 			List<Integer> properFactors = properFactors(n);
 			uniqueFactorizations = new HashSet<>();
 			populateUniqueFactorizations(properFactors, uniqueFactorizations);
@@ -80,7 +82,7 @@ public class ProductSumNumbers {
 
 		Set<Integer> solution = new HashSet<>();
 		for(int k=2; k<=K; k++) {
-			System.out.println("k: " + k);
+			// System.out.println("k: " + k);
 			// N >= k
 			int nLowerBound = k;
 			boolean foundSolution = false;
@@ -96,14 +98,14 @@ public class ProductSumNumbers {
 							 factorizationSum += f;
 						}
 						if(factorizationSum == n) {
-							System.out.print(factorizationSum + " = ");
-							for(Integer f : factorization) {
-								System.out.print(f + " ");
-							}
+							// System.out.print(factorizationSum + " = ");
+							// for(Integer f : factorization) {
+							// 	System.out.print(f + " ");
+							// }
 							// for(int i=0; i<k-factorizationSize; i++) {
 							// 	System.out.print("1 ");
 							// }
-							System.out.println("");
+							// System.out.println("");
 							foundSolution = true;
 							solution.add(n);
 							break;
