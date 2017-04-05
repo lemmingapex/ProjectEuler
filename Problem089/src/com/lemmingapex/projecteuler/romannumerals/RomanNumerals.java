@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.TreeMap;
 
 /**
  * 04/03/2017
@@ -19,25 +20,45 @@ import java.util.Map;
  */
 public class RomanNumerals {
 
-	static Map<Character, Integer> romanNumeralDenominationToValue = new HashMap<>();
+	private final static Map<String, Integer> romanNumeralDenominationToValue = new HashMap<>();
 	static {
-		romanNumeralDenominationToValue.put('I', 1);
-		romanNumeralDenominationToValue.put('V', 5);
-		romanNumeralDenominationToValue.put('X', 10);
-		romanNumeralDenominationToValue.put('L', 50);
-		romanNumeralDenominationToValue.put('C', 100);
-		romanNumeralDenominationToValue.put('D', 500);
-		romanNumeralDenominationToValue.put('M', 1000);
+		romanNumeralDenominationToValue.put("I", 1);
+		romanNumeralDenominationToValue.put("IV", 4);
+		romanNumeralDenominationToValue.put("V", 5);
+		romanNumeralDenominationToValue.put("IX", 9);
+		romanNumeralDenominationToValue.put("X", 10);
+		romanNumeralDenominationToValue.put("XL", 40);
+		romanNumeralDenominationToValue.put("L", 50);
+		romanNumeralDenominationToValue.put("XC", 900);
+		romanNumeralDenominationToValue.put("C", 100);
+		romanNumeralDenominationToValue.put("CD", 400);
+		romanNumeralDenominationToValue.put("D", 500);
+		romanNumeralDenominationToValue.put("CM", 900);
+		romanNumeralDenominationToValue.put("M", 1000);
 	}
 
-	static String romanNumeralDenominationOrder = "MDCLXVI";
+	private final static TreeMap<Integer, String> valueToRomanNumeralDenomination = new TreeMap<>();
+	static {
+		valueToRomanNumeralDenomination.put(1, "I");
+		valueToRomanNumeralDenomination.put(4, "IV");
+		valueToRomanNumeralDenomination.put(5, "V");
+		valueToRomanNumeralDenomination.put(9, "IX");
+		valueToRomanNumeralDenomination.put(10, "X");
+		valueToRomanNumeralDenomination.put(40, "XL");
+		valueToRomanNumeralDenomination.put(50, "L");
+		valueToRomanNumeralDenomination.put(90, "XC");
+		valueToRomanNumeralDenomination.put(100, "C");
+		valueToRomanNumeralDenomination.put(400, "CD");
+		valueToRomanNumeralDenomination.put(500, "D");
+		valueToRomanNumeralDenomination.put(900, "CM");
+		valueToRomanNumeralDenomination.put(1000, "M");
+	}
 
 	public static int romanNumeralToInt(String romanNumeral) {
 		int value = 0;
-		char[] romanNumeralChars = romanNumeral.toCharArray();
-		int previousValue = romanNumeralDenominationToValue.get('M');
-		for(int i=0; i<romanNumeralChars.length; i++) {
-			int v = romanNumeralDenominationToValue.get(romanNumeralChars[i]);
+		int previousValue = romanNumeralDenominationToValue.get("M");
+		for(int i=0; i<romanNumeral.length(); i++) {
+			int v = romanNumeralDenominationToValue.get(romanNumeral.substring(i, i+1));
 			if(v>previousValue) {
 				value -= 2*previousValue;
 			}
@@ -48,29 +69,21 @@ public class RomanNumerals {
 		return value;
 	}
 
-	// all broken
 	public static String intToRomanNumeral(int value) {
-		String romanNumeral = "";
-		for(int i=0; i<romanNumeralDenominationOrder.length(); i++) {
-			char rn = romanNumeralDenominationOrder.charAt(i);
-			int d = romanNumeralDenominationToValue.get(rn);
-			while(value>0 && (value >= d || value + 1 == d)) {
-				if(value + 1 == d) {
-					romanNumeral += romanNumeralDenominationOrder.charAt(i + 1) + "" + rn;
-				} else {
-					romanNumeral += rn;
-				}
-				value -= d;
-			}
+		int d = valueToRomanNumeralDenomination.floorKey(value);
+		if(value == d) {
+			return valueToRomanNumeralDenomination.get(value);
 		}
-		return romanNumeral;
+		return valueToRomanNumeralDenomination.get(d) + intToRomanNumeral(value - d);
 	}
 
 	public static int solve(List<String> romanNumeralsText) {
+		int solution = 0;
 		for(String romanNumeral : romanNumeralsText) {
-			System.out.println(romanNumeral + " " + romanNumeralToInt(romanNumeral) + " " + intToRomanNumeral(romanNumeralToInt(romanNumeral)));
+			solution += romanNumeral.length() - intToRomanNumeral(romanNumeralToInt(romanNumeral)).length();
+			//System.out.println(romanNumeral + " " + romanNumeralToInt(romanNumeral) + " " + intToRomanNumeral(romanNumeralToInt(romanNumeral)));
 		}
-		return 0;
+		return solution;
 	}
 
 	public static void main(String[] args) {

@@ -11,7 +11,7 @@ ant
 java -jar ./target/romannumerals.jar p089_roman.txt
 
 ## Thoughts
-Nothing fancy here.
+Convert a roman numeral into a base 10 Hindu–Arabic integer, then convert the integer into a roman numeral in lowest form.  I used recursion to recreate the roman numeral.
 
 ## Run-time
 Unknown.
