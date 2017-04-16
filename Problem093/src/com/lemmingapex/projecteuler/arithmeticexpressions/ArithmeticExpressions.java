@@ -1,11 +1,14 @@
 package com.lemmingapex.projecteuler.arithmeticexpressions;
 
+import java.util.Arrays;
 import java.util.ArrayList;
 import java.util.stream.Collectors;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Stack;
 import java.util.TreeSet;
 
 /**
@@ -76,76 +79,97 @@ public class ArithmeticExpressions {
 		List<List<Integer>> digitPermutations = generateDigits();
 		List<List<String>> operationPermutations = generateOperations();
 
-		for(List<String> op : operationPermutations) {
-			for(String o : op) {
-				System.out.print(o + "");
+		List<List<String>> reversePolishNotations = new ArrayList<List<String>>();
+		reversePolishNotations.add(Arrays.asList(new String[]{"D", "D", "O", "D", "O", "D", "O"}));
+		reversePolishNotations.add(Arrays.asList(new String[]{"D", "D", "D", "O", "D", "O", "O"}));
+		reversePolishNotations.add(Arrays.asList(new String[]{"D", "D", "D", "O", "O", "D", "O"}));
+		reversePolishNotations.add(Arrays.asList(new String[]{"D", "D", "D", "D", "O", "O", "O"}));
+		reversePolishNotations.add(Arrays.asList(new String[]{"D", "D", "O", "D", "D", "O", "O"}));
+
+		Map<TreeSet<Integer>, TreeSet<Integer>> combinationToDigitsMap = new HashMap<>();
+
+		for(List<Integer> dp : digitPermutations) {
+			TreeSet<Integer> mapKey = new TreeSet<>();
+			mapKey.addAll(dp);
+			TreeSet<Integer> mapDigits = combinationToDigitsMap.get(mapKey);
+			if(mapDigits == null) {
+				mapDigits = new TreeSet<>();
 			}
-			System.out.println("");
+			for(List<String> op : operationPermutations) {
+				for(List<String> reversePolishNotation : reversePolishNotations) {
+					LinkedList<Object> expressionQueue = new LinkedList<Object>();
+					int d = 0;
+					int o = 0;
+					for(String m : reversePolishNotation) {
+						switch(m) {
+							case "D":
+								expressionQueue.add(dp.get(d++));
+								break;
+							case "O":
+								expressionQueue.add(op.get(o++));
+								break;
+						}
+					}
+
+					Stack<Double> expressionValueStack = new Stack<>();
+					for(Object e : expressionQueue) {
+						if(e instanceof String) {
+							String operation = (String)e;
+							double A = expressionValueStack.pop();
+							double B = expressionValueStack.pop();
+							switch(operation) {
+								case "*":
+									expressionValueStack.push(A*B);
+									break;
+								case "+":
+									expressionValueStack.push(A+B);
+									break;
+								case "/":
+									expressionValueStack.push(A/B);
+									break;
+								case "-":
+									expressionValueStack.push(A-B);
+									break;
+							}
+						} else if(e instanceof Integer) {
+							double digit = (double)((Integer)e);
+							expressionValueStack.push(digit);
+						}
+					}
+
+					double expressionValue = expressionValueStack.pop();
+					// is the result an integer?
+					if(!Double.isInfinite(expressionValue) && (expressionValue == Math.floor(expressionValue)) && expressionValue>0) {
+						mapDigits.add((int)expressionValue);
+						// System.out.println(expression + " = " + expressionValue);
+					}
+				}
+			}
+			combinationToDigitsMap.put(mapKey, mapDigits);
 		}
-		return 0;
-		//
-		// Map<TreeSet<Integer>, TreeSet<Integer>> combinationToDigitsMap = new HashMap<>();
-		//
-		// for(List<Integer> dp : digitPermutations) {
-		// 	TreeSet<Integer> mapKey = new TreeSet<>();
-		// 	mapKey.addAll(dp);
-		// 	TreeSet<Integer> mapDigits = combinationToDigitsMap.get(mapKey);
-		// 	if(mapDigits == null) {
-		// 		mapDigits = new TreeSet<>();
-		// 	}
-		// 	for(List<String> op : operationPermutations) {
-		// 		String expression = "" + dp.get(0);
-		// 		double expressionValue = dp.get(0);
-		// 		for(int i=0; i<op.size(); i++) {
-		// 			String operation = op.get(i);
-		// 			Integer digit = dp.get(i+1);
-		// 			switch(operation) {
-		// 				case "*":
-		// 				expressionValue *= (double)digit;
-		// 					break;
-		// 				case "+":
-		// 				expressionValue += (double)digit;
-		// 					break;
-		// 				case "/":
-		// 				expressionValue /= (double)digit;
-		// 					break;
-		// 				case "-":
-		// 				expressionValue -= (double)digit;
-		// 					break;
-		// 			}
-		// 			expression += operation + digit;
-		// 		}
-		// 		// is the result an integer?
-		// 		if(!Double.isInfinite(expressionValue) && (expressionValue == Math.floor(expressionValue)) && expressionValue >0) {
-		// 			mapDigits.add((int)expressionValue);
-		// 			System.out.println(expression + " = " + expressionValue);
-		// 		}
-		// 	}
-		// 	combinationToDigitsMap.put(mapKey, mapDigits);
-		// }
-		//
-		// int highestTarget = 0;
-		// TreeSet<Integer> highestTargetCombination = null;
-		// for (Map.Entry<TreeSet<Integer>, TreeSet<Integer>> combination : combinationToDigitsMap.entrySet()) {
-		// 	int target = 0;
-		// 	TreeSet<Integer> targetCombination = combination.getValue();
-		// 	int i = 1;
-		// 	for(Integer value : targetCombination) {
-		// 		if(value == i) {
-		// 			target++;
-		// 		} else {
-		// 			break;
-		// 		}
-		// 		i++;
-		// 	}
-		// 	if(target > highestTarget) {
-		// 		highestTarget = target;
-		// 		highestTargetCombination = combination.getKey();
-		// 	}
-		// }
+
+		int highestTarget = 0;
+		TreeSet<Integer> highestTargetCombination = null;
+		for (Map.Entry<TreeSet<Integer>, TreeSet<Integer>> combination : combinationToDigitsMap.entrySet()) {
+			int target = 0;
+			TreeSet<Integer> targetCombination = combination.getValue();
+			int i = 1;
+			for(Integer value : targetCombination) {
+				if(value == i) {
+					target++;
+				} else {
+					break;
+				}
+				i++;
+			}
+			if(target > highestTarget) {
+				highestTarget = target;
+				highestTargetCombination = combination.getKey();
+			}
+		}
 		// System.out.println(highestTarget);
-		//
-		// return Integer.valueOf(highestTargetCombination.stream().map((d) -> { return d.toString(); }).collect(Collectors.joining("")));
+
+		return Integer.valueOf(highestTargetCombination.stream().map((d) -> { return d.toString(); }).collect(Collectors.joining("")));
 	}
 
 	public static void main(String[] args) {
