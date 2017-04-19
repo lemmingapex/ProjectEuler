@@ -24,38 +24,62 @@ public class AlmostEquilateralTriangle {
 		return a;
 	}
 
+	// public long solve(int N) {
+	// 	long perimeterSum = 0;
+	//
+	// 	for(long o=-1; o<=1; o+=2) {
+	// 		for(long m=2; ; m++) {
+	// 			double nSquared_double = (m*m - o)/3.0;
+	// 			double n_double = Math.sqrt(nSquared_double);
+	// 			if(2*(m*m + n_double*n_double)+(2*(m*m - n_double*n_double)) <= N) {
+	// 				// check if n is an integer
+	// 				//System.out.println("l = " + (m*m + n_double*n_double));
+	// 				//System.out.println(m + " " + n_double);
+	// 				if(n_double == Math.floor(n_double) && m*m > n_double*n_double) {
+	// 					long n = (long) n_double;
+	// 					// make sure m and n are co-prime
+	// 					if(AlmostEquilateralTriangle.gcd(m, n) == 1) {
+	// 						//System.out.println(m + " " + n);
+	//
+	// 						long l = m*m + n*n;
+	// 						long k = 2*(m*m - n*n);
+	// 						long p = 2*l+k;
+	//
+	// 						System.out.println(l + " " + l + " " + k);
+	// 						perimeterSum += p;
+	// 					}
+	// 				}
+	// 			} else {
+	// 				break;
+	// 			}
+	// 		}
+	// 	}
+	// 	return perimeterSum;
+	// }
+
+
 	public long solve(int N) {
 		long perimeterSum = 0;
-
-		length:
-		for(long m=2; ; m++) {
-			long mSquared = m*m;
-			for(long o=-1; o<=1; o+=2) {
-				double nSquared_double = (mSquared - o)/3.0;
-				int nSquared = (int)nSquared_double;
-				double n_double = Math.sqrt(nSquared_double);
-				// TODO: check all multipules of m and n up to N
-
-				// check if n is an integer
-				//System.out.println(mSquared + " " + nSquared);
-				if(n_double == Math.floor(n_double) && mSquared > nSquared) {
-					long n = (long) n_double;
-					// make sure m and n are co-prime
-					if(AlmostEquilateralTriangle.gcd(m, n) == 1) {
-						long l = mSquared + nSquared;
-						long k = 2*(mSquared - nSquared);
-						long p = 2*l+k;
-						if(p <= N) {
-							System.out.println(l + " " + l + " " + k);
-							perimeterSum += p;
-						} else {
-							break length;
+		for(long s=1; ; s+=2) {
+			if(s*s > (N + 1)/3) {
+				break;
+			}
+			for(long t=s-2; t>0; t-=2) {
+				if(AlmostEquilateralTriangle.gcd(s, t) == 1) {
+					long a = s*t;
+					long b = (s*s - t*t)/2;
+					long c = (s*s + t*t)/2;
+					for(long o=-1; o<=1; o+=2) {
+						if(a*2 == c-o || b*2 == c-o) {
+							long p = c*3-o;
+							if(p <= N) {
+								perimeterSum += p;
+							}
 						}
 					}
 				}
 			}
 		}
-
 		return perimeterSum;
 	}
 
