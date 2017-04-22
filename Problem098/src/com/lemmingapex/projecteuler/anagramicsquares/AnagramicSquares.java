@@ -125,10 +125,6 @@ public class AnagramicSquares {
 		return largestSquareNumberOfSquareAnagramWordPair;
 	}
 
-	public int solve() {
-		return 0;
-	}
-
 	public static void main(String[] args) {
 		if (args.length != 1) {
 			System.err.println("Incorrect number of arguments.");
