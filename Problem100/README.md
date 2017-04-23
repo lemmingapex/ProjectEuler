@@ -33,7 +33,7 @@ As a start try to find a recursive formulation using only the previous two terms
 An(n) = X1×An-1 + X2×An-2 + X3×n + X4  
 
 By using the first few terms in the sequence calculated above, a linear system can be obtained:
-
+```
 A0 = 1  
 A1 = 3  
 
@@ -41,7 +41,7 @@ A2 = 15   = X1×3   + X2×1  + X3×2 + X4×1
 A3 = 85   = X1×15  + X2×3  + X3×3 + X4×1  
 A4 = 493  = X1×85  + X2×15 + X3×4 + X4×1  
 A5 = 2871 = X1×493 + X2×85 + X3×5 + X4×1  
-
+```
 Solving the systems gives:
 
 X1 = 6  
@@ -54,9 +54,11 @@ which give a recursive form:
 An = 6×An-1 - An-2 - 2  
 
 The recursive formulation seems to hold when calculating the next few terms.  
+```
 A6 = 6×2871 - 493 - 2    = 16731  
 A7 = 6×16731 - 2871 - 2  = 97513  
 A8 = 6×97513 - 16731 - 2 = 568345  
+```
 
 It is now possible to iterate on An (which is b) and calculate a corresponding value of n (n = ½ + √(8b²-8b+1)/2).  If n is greater than 10^12, the search is done.
 
