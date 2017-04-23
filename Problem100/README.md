@@ -53,7 +53,7 @@ which give a recursive form:
 
 An = 6×An-1 - An-2 - 2  
 
-The recursive formulation seems to hold when calculating the next few terms.
+The recursive formulation seems to hold when calculating the next few terms.  
 A6 = 6×2871 - 493 - 2    = 16731  
 A7 = 6×16731 - 2871 - 2  = 97513  
 A8 = 6×97513 - 16731 - 2 = 568345  
