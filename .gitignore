@@ -17,3 +17,7 @@
 *.jar
 .classpath
 .project
+
+.gradle
+build
+!gradle-wrapper.jar
